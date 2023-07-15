@@ -41,7 +41,9 @@ Route::get('/ejemplo', function () {
 
 
 /* INICIO RUTAS ENCOMIENDA */
-
+Route::get('/encomiendas', function () {
+    return view('ejemplo.ejemplo');
+});
 /* FIN RUTAS ENCOMIENDA */
 
 
