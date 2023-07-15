@@ -33,6 +33,11 @@ Route::get('/ejemplo', function () {
 /* FIN RUTAS CONTABILIDAD */
 
 
+/* INICIO RUTAS VENTAS*/
+
+/* FIN RUTAS VENTAS */
+
+
 
 /* INICIO RUTAS RECURSOS HUMANOS */
 
