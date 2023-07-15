@@ -115,7 +115,7 @@ class ClienteController extends Controller
         $cliente->ciudad=$request->ciudad;
         $cliente->dni=$request->dni;
         $cliente->save();
-        return redirect()->route('cliente.index')->with('datos','Se ha actualizado los datos de cliente exitosamente');
+        return redirect()->route('cliente.index')->with('datos','Se ha Actualizado los datos de cliente exitosamente');
         }
 
     /**
@@ -125,6 +125,6 @@ class ClienteController extends Controller
     {
         //
         $cliente->delete();
-        return redirect('clientes');
+        return redirect('clientes')->with('datos','Se Eliminado el registro con éxito');
     }
 }
