@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('layouts.plantilla')
 @section('title','Página Principal')
 @section('content')
 <div class="container">
