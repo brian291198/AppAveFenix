@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VentaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +36,7 @@ Route::get('/ejemplo', function () {
 
 
 /* INICIO RUTAS VENTAS*/
-
+Route::resource('clientes', ClienteController::class)->names('cliente');
 /* FIN RUTAS VENTAS */
 
 
