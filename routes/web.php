@@ -37,6 +37,8 @@ Route::get('/ejemplo', function () {
 
 /* INICIO RUTAS VENTAS*/
 Route::resource('clientes', ClienteController::class)->names('cliente');
+
+Route::resource('ventas', VentaController::class)->names('ventas');
 /* FIN RUTAS VENTAS */
 
 

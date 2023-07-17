@@ -197,13 +197,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('cliente.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Clientes</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('ventas.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>ListaVentas</p>
               </a>
@@ -211,7 +211,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Gráficos</p>
+                <p>Gráfico</p>
               </a>
             </li>
           </ul>
