@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TransporteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +42,12 @@ Route::get('/ejemplo', function () {
 
 
 /* INICIO RUTAS ENCOMIENDA */
-Route::get('/encomiendas', function () {
-    return view('ejemplo.ejemplo');
-});
+Route::get('/transportes', [TransporteController::class, 'index'])->name('transportes.index');
+Route::get('/transportes/create', [TransporteController::class, 'create'])->name('transportes.create');
+Route::post('/transportes', [TransporteController::class, 'store'])->name('transportes.store');
+Route::get('/transportes/{transporte}/edit', [TransporteController::class, 'edit'])->name('transportes.edit');
+Route::put('/transportes/{transporte}/update', [TransporteController::class, 'update'])->name('transportes.update');
+Route::delete('/transportes/{transporte}/delete', [TransporteController::class, 'delete'])->name('transportes.delete');
 /* FIN RUTAS ENCOMIENDA */
 
 
