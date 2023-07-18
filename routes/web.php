@@ -21,9 +21,14 @@ use App\Http\Controllers\PromocionController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('layouts.plantilla');
-});
+}); */
+
+Route::get('/', function () {
+    return view('auth.login');
+  });
+
 
 /* IGNORAR LA SIGUIENTE RUTA  */
 Route::get('/ejemplo', function () {
@@ -93,5 +98,3 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 }); 
-
-
