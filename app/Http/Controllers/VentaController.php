@@ -75,7 +75,7 @@ class VentaController extends Controller
                 $i++;
             }
 
-        //return $request;
+        //return $detalle;
         return redirect()->route('ventas.index')->with('datos','La venta se ha creado correctamente');
         
     }

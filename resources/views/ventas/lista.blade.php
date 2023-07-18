@@ -37,7 +37,11 @@
                         <tr>
                             <td>{{$ve->idventas}}</td>
                             <td>{{$ve->nombre}}</td>
-                            <td>{{$ve->idestado}}</td>
+                            <td>@if ($ve->idestado == 1)
+                                Reserva
+                            @elseif ($ve->idestado == 2)
+                                Pagado
+                            @endif</td>
                             <td>{{$ve->fecha}}</td>
                         
                             <td class="text-center">

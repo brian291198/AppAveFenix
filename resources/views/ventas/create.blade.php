@@ -30,8 +30,8 @@
     
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="a" class="form-label">Fecha de Retorno:</label>
-                <input type="text" id="fechaRetorno" class="form-control" name="fechaRetorno" value="" placeholder="Seleccione una fecha">
-                <input type="hidden" id="fechaRetornoHidden" name="fechaRetorno_hidden">
+                <input type="text" id="fechaRetorno" class="form-control" disabled="true" name="fechaRetorno" value="" placeholder="Seleccione una fecha">
+                <input type="hidden" id="fechaRetornoHidden" name="fechaRetorno_hidden" >
             </div>
 
             <div class="mb-3 col-sm-12 col-md-2">
@@ -110,10 +110,23 @@
     {
         enableTime: false,
         dateFormat: "Y-m-d",
+        
         onChange: function(selectedDates, dateStr) {
-                // Cuando se selecciona una fecha de ida, la almacenamos en el campo oculto
-                document.getElementById("fechaIdaHidden").value = dateStr;
-            }
+        // Obtener la fecha actual
+        var fechaActual = new Date().toISOString().split('T')[0];
+        
+        if (dateStr < fechaActual) {
+            //Mensaje de error, permanece desahbilitado FechaRetorno
+            alert("Elegir fecha válida");
+            fechaInputIda._input.value = ""; // Limpiar el valor del campo Fecha de Ida
+        } else {
+            // Cuando se selecciona una fecha de ida válida, la almacenamos en el campo oculto
+            document.getElementById("fechaIdaHidden").value = dateStr;
+            // Habilitar Fecha de Retorno y establecer la fecha mínima
+            fechaInputRetorno.disabled = false;
+            fechaInputRetorno._input.setAttribute("min", dateStr); // Establecer la fecha mínima para Fecha de Retorno
+        }
+    }
     });
 
 
