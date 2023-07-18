@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VentaController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\TarifaController;
 use App\Http\Controllers\PromocionController;
@@ -36,6 +41,13 @@ Route::get('/ejemplo', function () {
 /* FIN RUTAS CONTABILIDAD */
 
 
+/* INICIO RUTAS VENTAS*/
+Route::resource('clientes', ClienteController::class)->names('cliente');
+
+Route::resource('ventas', VentaController::class)->names('ventas');
+/* FIN RUTAS VENTAS */
+
+
 
 /* INICIO RUTAS RECURSOS HUMANOS */
 
@@ -65,5 +77,21 @@ Route::get('/promociones/{promocion}/edit', [PromocionController::class, 'edit']
 Route::put('/promociones/{promocion}/update', [PromocionController::class, 'update'])->name('promociones.update');
 Route::delete('/promociones/{promocion}/delete', [PromocionController::class, 'delete'])->name('promociones.delete');
 /* FIN RUTAS ENCOMIENDA */
+
+
+
+/* RUTAS PARA LOGIN */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+/* RUTAS PARA USUARIOS Y ROLES */
+Route::group(['middleware' => ['auth']], function(){
+    Route::resource('roles',RolController::class);
+    Route::resource('usuarios',UsuarioController::class);
+
+
+}); 
 
 
