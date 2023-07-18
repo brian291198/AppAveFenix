@@ -14,8 +14,19 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+
+
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="//fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+  <!-- Scripts -->
+  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
   <!-- Tailwind styles -->
   <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -98,6 +109,68 @@
                 <i class="fas fa-search fa-fw"></i>
               </button>
             </div>
+
+          </form>
+        </div>
+      </li> --}}
+
+
+     
+      <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }}
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+    </li>
+ 
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link" style="text-decoration: none">
+      <img src="/logo_avefenix.png"
+            class=" " alt="Logo Ave Fenix" style="width: 50px; margin:auto 10px; opacity: .8">
+     
+      <span class="brand-text font-weight-light" >Ave Fenix</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+
+      {{-- PARA NOMBRE DE USUARIO E IMAGEN --}}
+
+      {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Nombre Uuario</a>
+        </div>
+      </div> --}}
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline" style="margin-top: 10%">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
           </div>
         </div>
 
@@ -106,141 +179,167 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+  
+              <img src="usuario.png" alt="" style="margin: 0px 5px 0px 3px">
+              <p>
+                Acceso
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              @can('role.index') 
+              <li class="nav-item">
+                <a href="{{route('roles.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                
+                  <p>Roles</p>
+                </a>
+              </li>
+              @endcan
+
+              @can('user.index') 
+              <li class="nav-item">
+                <a href="{{route('usuarios.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              @endcan
+           {{--    <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard v3</p>
+                </a>
+              </li> --}}
+            </ul>
+          </li>
+
+        {{-- INICIO SUBSISTEMA MANTENIMIENTO --}}
+
+        {{-- FIN SUBSISTEMA MANTENIMIENTO --}}
+
+        
+
+        {{-- INICIO SUBSISTEMA CONTABILIDAD --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Contabilidad
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contabilidad v1</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contabilidad v2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contabilidad v3</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        {{-- FIN SUBSISTEMA CONTABILIDAD --}}
+
+
+          
+        {{-- INICIO SUBSISTEMA RECURSOS HUMANOS --}}
+
+        {{-- FIN SUBSISTEMA RECURSOS HUMANOS --}}
+
+
+
+        {{-- INICIO SUBSISTEMA VENTAS --}}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-signal"></i>
+            <p>
+              Ventas
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
+              <a href="{{route('cliente.index')}}" class="nav-link fas fa-user">
+                <i class="nav-icon"></i>
+                <p>Clientes</p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                  </a>
-                </li>
-              </ul>
             </li>
-
-            {{-- INICIO SUBSISTEMA MANTENIMIENTO --}}
-
-            {{-- FIN SUBSISTEMA MANTENIMIENTO --}}
-
-
-
-            {{-- INICIO SUBSISTEMA CONTABILIDAD --}}
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Contabilidad
-                  <i class="right fas fa-angle-left"></i>
-                </p>
+              <a href="{{route('ventas.index')}}" class="nav-link fas fa-credit-card">
+                <i class="nav-icon"></i>
+                <p>ListaVentas</p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Contabilidad v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Contabilidad v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Contabilidad v3</p>
-                  </a>
-                </li>
-              </ul>
             </li>
-            {{-- FIN SUBSISTEMA CONTABILIDAD --}}
-
-
-
-
-            {{-- INICIO SUBSISTEMA RECURSOS HUMANOS --}}
-
-            {{-- FIN SUBSISTEMA RECURSOS HUMANOS --}}
-
-
-
-
-            {{-- INICIO SUBSISTEMA ENCOMIENDA --}}
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Encomiendas
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Paquetes</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="/promociones" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Promociones</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="/tarifas" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Tarifas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="/transportes" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Transportes</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            {{-- FIN SUBSISTEMA ENCOMIENDA --}}
-
-
-
-
-
-            {{-- INICIO SUBSISTEMA VENTAS --}}
-
-            {{-- FIN SUBSISTEMA VENTAS --}}
-
-
           </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+        </li>
+        {{-- FIN SUBSISTEMA VENTAS --}}
+
+
+        {{-- INICIO SUBSISTEMA ENCOMIENDA --}}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Encomiendas
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Paquetes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/promociones" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Promociones</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/tarifas" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tarifas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/transportes" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Transportes</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        {{-- FIN SUBSISTEMA ENCOMIENDA --}}
+
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
+
 
 
       <!-- Main content -->
