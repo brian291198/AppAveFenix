@@ -17,12 +17,13 @@
 
     <div class="container">
         <table class="table table-hover">
-            <thead class="table-dark">
+            <thead class="table-dark ">
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Fecha</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Fecha</th>
+                
                 <th colspan="2" class="text-center">Accion</th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                         <tr>
                             <td>{{$ve->idventas}}</td>
                             <td>{{$ve->nombre}}</td>
+                            <td>{{$ve->idestado}}</td>
                             <td>{{$ve->fecha}}</td>
                         
                             <td class="text-center">

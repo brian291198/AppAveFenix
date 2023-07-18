@@ -19,16 +19,15 @@ class VentaController extends Controller
     public function index()
     {
         //
-        $ventas = Ventas::join('clientes', 'ventas.idcliente', '=', 'clientes.idcliente')
-        ->select('ventas.idventas', 'clientes.nombre', 'ventas.fecha')
-        ->get();
+        // $ventas = Ventas::join('clientes', 'ventas.idcliente', '=', 'clientes.idcliente')
+        // ->select('ventas.idventas', 'clientes.nombre', 'ventas.fecha')
+        // ->get();
 
-        //$ventas=DB::table('ventas as v')->join('clientes as c','v.idcliente','=','c.idcliente')->select('v.idventas','c.nombre','v.fecha')->paginate($this::PAGINATION);
+        //return view('ventas.lista', ['ventas' => $ventas]);
 
-        // $ventas = Ventas::all();
-        return view('ventas.lista', ['ventas' => $ventas]);
+        $ventas=DB::table('ventas as v')->join('clientes as c','v.idcliente','=','c.idcliente')->select('v.idventas','c.nombre','v.idestado','v.fecha')->paginate($this::PAGINATION);
 
-        //return view('ventas.lista', compact('ventas')); // Pasar 'ventas' en lugar de 'ventas.lista'
+        return view('ventas.lista', compact('ventas')); // Pasar 'ventas' en lugar de 'ventas.lista'
     }
 
     /**
@@ -36,14 +35,13 @@ class VentaController extends Controller
      */
     public function create()
     {
-        //
+        
         $cliente = Cliente::all();
-        $ciudades = DB::table('itinerario')->select('Nomciudad')->distinct()->get();
-        $itinerario = Itinerario::all();
-
+        $estado = Estado::all();
+        $itinerarios = Itinerario::all();
 
         //return $itinerario;
-        return view('ventas.create', compact('cliente', 'itinerario', 'ciudades'));
+        return view('ventas.create', compact('cliente', 'itinerarios','estado'));
         //return view('ventas.create', ['opciones' => $opciones],compact('cliente','ciudades','itinerario'));
 
     }
@@ -54,33 +52,36 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        $venta = new Ventas();
-        $venta->idcliente = $request->input('idcliente');
-        $venta->idestado = 1; // Estado predeterminado, puedes ajustarlo según tu lógica
-        $venta->fecha = now();
-        $venta->save();
+        // $venta = new Ventas();
+        // $venta->idcliente = $request->input('idcliente');
+        // $venta->idestado = 1; // Estado predeterminado, puedes ajustarlo según tu lógica
+        // $venta->fecha = now();
+        // $venta->save();
 
-        // $itinerarios = $request->input('idciudad');
+            $ventas=new Ventas();
+            $ventas->idcliente=$request->idcliente;
+            $ventas->idestado=$request->idestado;
+            $ventas->fecha=now();
+            $ventas->save();
+            $itinerarios=$request->iditinerarios;
+            $i=0;
+            foreach($itinerarios as $it){
+                $detalle=new DetalleVenta();
+                $detalle->idventas=$ventas->idventas;
+                $detalle->iditinerario=$it[0];
+                $detalle->cantidad=$request->cantidad[$i];
+                $detalle->save();
 
-        // foreach ($itinerarios as $itinerario) {
-        //     $datos = explode('_', $itinerario);
-        //     $iditinerario = $datos[0];
-        //     $cantidad = $request->input('cantidad_'.$iditinerario);
+                $itinerario=Itinerario::find($it[0]);
+                $itinerario->asientos=$itinerario->asientos-$request->cantidad[$i];
+                $itinerario->save();
 
-        //     $detalleVenta = new DetalleVenta();
-        //     //$detalleVenta->idventas =$request-> $idventa;
-        //     $detalleVenta->iditinerario =$request-> $iditinerario;
-        //     $detalleVenta->cantidad =$request-> $cantidad;
-        //     $detalleVenta->save();
-        // }
-
-        return $idventa;
-
-        // Redirigir a la vista de confirmación o a la lista de ventas
-        //return redirect()->route('ventas.index')->with('mensaje', 'La venta se ha registrado correctamente.');
-        
-        //return redirect()->route('ventas.index')->with('datos','Venta de pasaje se ha creado correctamente');
+                $i++;
+            }
+            
         //return $request;
+        return redirect()->route('ventas.index')->with('datos','La venta se ha creado correctamente');
+        
     }
 
     /**

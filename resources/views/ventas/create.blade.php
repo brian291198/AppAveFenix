@@ -14,7 +14,8 @@
 
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="idcliente" class="form-label">Cliente: </label>
-                <select name="idcliente" id="idcliente" class="form-control">
+                <select name="idcliente" id="idcliente" class="form-control"> 
+                    {{-- Id : JS | name: Controlador --}}
                     @foreach ($cliente as $c)
                         <option value="{{$c->idcliente}}">{{$c->nombre}}</option>
                     @endforeach
@@ -30,30 +31,27 @@
                 <label for="a" class="form-label">Fecha de Retorno:</label>
                 <input type="text" id="fecharetorno" class="form-control" name="fecharetorno" value="" placeholder="Seleccione una fecha">
             </div>
-            
-            <div class="mb-3 col-sm-12 col-md-4">
-                <label for="ciudades" class="form-label">Ciudad-Servicio: </label>
-                <select name="idciudad" id="idciudad" class="form-control js-example-basic-single" onchange="agregar()">
-                    @foreach($ciudades as $ciudad)
-                        @foreach($itinerario->where('Nomciudad', $ciudad->Nomciudad) as $iti)
-                            @php
-                                $ciudades = $itinerario->unique('Nomciudad');
-                                $precio_total = $iti->PrecioCiud + $iti->PrecioServ;
-                            @endphp
-                            <option value="{{ $iti->idciudad }}_{{ $iti->Nomciudad }}_{{ $precio_total }}_{{ $iti->NomServicio }}_{{ $iti->asientos }}_{{ $iti->horaida }}_{{ $iti->horallegada }}">{{ $ciudad->Nomciudad }}--{{ $iti->NomServicio }}</option>
-                        @endforeach
+
+            <div class="mb-3 col-sm-12 col-md-2">
+                <label for="idestado" class="form-label">Estado: </label>
+                <select name="idestado" id="idestado" class="form-control">
+                    @foreach ($estado as $e)
+                        <option value="{{$e->idestado}}">{{$e->NomEstado}}</option>
                     @endforeach
                 </select>
             </div>
 
-            {{-- <div class="mb-3 col-sm-12 col-md-4">
-                <label for="ciudades" class="form-label">Ciudad-Servicio: </label>
-                <select name="idciudad" id="idciudad" class="form-control js-example-basic-single" onchange="agregar()">
-                    @foreach($ciudades as $ciudad)
-                        <option value="{{ $ciudad->Nomciudad }}_">{{ $ciudad->Nomciudad }}</option>
+            <div class="mb-3 col-sm-12 col-md-4">
+                <label for="iditinerario" class="form-label">Ciudad-Servicio: </label>
+                <select name="iditinerario" id="iditinerario" class="form-control js-example-basic-single" onchange="agregar()">
+                    @foreach($itinerarios as $iti)
+                        @php
+                        $precio_total = $iti->PrecioCiud + $iti->PrecioServ;
+                        @endphp
+                        <option value="{{ $iti->iditinerario }}_{{ $iti->Nomciudad }}_{{ $precio_total }}_{{ $iti->NomServicio }}_{{ $iti->asientos }}_{{ $iti->horaida }}_{{ $iti->horallegada }}_{{ $iti->PrecioCiud }}_{{ $iti->PrecioServ }}">{{ $iti->Nomciudad }}--{{ $iti->NomServicio }}</option>
                     @endforeach
                 </select>
-            </div> --}}
+            </div>
     
             <div class="table-responsive">
                 <table id="detalle" class="table table-hover">
@@ -153,8 +151,9 @@
 	{
         vector = [];
 		var cantidad=parseInt(prompt('Ingrese Cantidad de Pasajes'));
+        $('#iditinerario').prop('disabled', true);
         if(cantidad>0){
-            datosciudad=document.getElementById('idciudad').value.split('_');
+            datosciudad=document.getElementById('iditinerario').value.split('_');
             var dato=datosciudad[0];
             if (compara(dato,vector)){
                 alert('Ya ha seleccionado esa Ciudad');
@@ -167,8 +166,7 @@
                 igv=sub_total*0.18;
                 total=igv+sub_total;
 
-
-                fila = '<tr id="fila' + indice + '" class="text-center"><td><a href="#" class="btn btn-danger btn-sm" onclick="quitar(' + indice + ',' + totales + ',' + datosciudad[0] + ')">Quitar</a></td><td><input type="hidden" name="idciudad[]" value="' + datosciudad[1] + '">' + datosciudad[1] + '</td><td>' + datosciudad[3] + '</td><td>' + datosciudad[5] + '</td><td>' + datosciudad[6] + '</td> <td>' + datosciudad[2] + '</td><td><input type="hidden" name="cantidad[]" value="' + cantidad + '">' + cantidad + '</td><td>' + parseFloat(totales).toFixed(2) + '</td></tr>';
+                fila = '<tr id="fila' + indice + '" class="text-center"><td><a href="#" class="btn btn-danger btn-sm" onclick="quitar(' + indice + ',' + totales + ',' + datosciudad[0] + ')">Quitar</a></td><td><input type="hidden" name="iditinerarios[]" value="' + datosciudad[0] + '">' + datosciudad[1] + '</td><td>' + datosciudad[3] + '</td><td>' + datosciudad[5] + '</td><td>' + datosciudad[6] + '</td> <td>' + datosciudad[2] + '</td><td><input type="hidden" name="cantidad[]" value="' + cantidad + '">' + cantidad + '</td><td>' + parseFloat(totales).toFixed(2) + '</td></tr>';
 
                 $('#detalle').append(fila);	                    
 
@@ -218,6 +216,7 @@
         indice--;
         if (indice == 0) {
             document.getElementById('idagregar').disabled = true;
+            $('#iditinerario').prop('disabled', false);
         }
     }
 

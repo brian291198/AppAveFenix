@@ -11,5 +11,6 @@ class DetalleVenta extends Model
     protected $fillable=['idventas','iditinerario'];
     protected $primaryKey=['idventas','iditinerario'];
     public $timestamps=false;
+    public $incrementing=false; //Se agrego
     use HasFactory;
 }

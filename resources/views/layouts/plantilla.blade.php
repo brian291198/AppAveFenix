@@ -189,7 +189,7 @@
         {{-- INICIO SUBSISTEMA VENTAS --}}
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-credit-card"></i>
             <p>
               Ventas
               <i class="right fas fa-angle-left"></i>
@@ -197,14 +197,14 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('cliente.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+              <a href="{{route('cliente.index')}}" class="nav-link fas fa-users">
+                <i class="nav-icon"></i>
                 <p>Clientes</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('ventas.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+              <a href="{{route('ventas.index')}}" class="nav-link fas fa-signal">
+                <i class="nav-icon"></i>
                 <p>ListaVentas</p>
               </a>
             </li>
