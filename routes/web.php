@@ -45,3 +45,8 @@ Route::get('/ejemplo', function () {
 /* FIN RUTAS ENCOMIENDA */
 
 
+
+/* RUTAS PARA LOGIN */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
