@@ -1,15 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
-
-=======
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VentaController;
->>>>>>> Ventas
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -228,7 +228,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('cliente.index')}}" class="nav-link fas fa-users">
+              <a href="{{route('cliente.index')}}" class="nav-link fas fa-user">
                 <i class="nav-icon"></i>
                 <p>Clientes</p>
               </a>
