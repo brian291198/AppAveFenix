@@ -52,11 +52,6 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        // $venta = new Ventas();
-        // $venta->idcliente = $request->input('idcliente');
-        // $venta->idestado = 1; // Estado predeterminado, puedes ajustarlo según tu lógica
-        // $venta->fecha = now();
-        // $venta->save();
 
             $ventas=new Ventas();
             $ventas->idcliente=$request->idcliente;
@@ -78,7 +73,7 @@ class VentaController extends Controller
 
                 $i++;
             }
-            
+
         //return $request;
         return redirect()->route('ventas.index')->with('datos','La venta se ha creado correctamente');
         
@@ -90,6 +85,7 @@ class VentaController extends Controller
     public function show(string $id)
     {
         //
+        return view('ventas.show');
     }
 
     /**

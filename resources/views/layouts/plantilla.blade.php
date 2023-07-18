@@ -189,7 +189,7 @@
         {{-- INICIO SUBSISTEMA VENTAS --}}
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-credit-card"></i>
+            <i class="nav-icon fas fa-signal"></i>
             <p>
               Ventas
               <i class="right fas fa-angle-left"></i>
@@ -203,7 +203,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('ventas.index')}}" class="nav-link fas fa-signal">
+              <a href="{{route('ventas.index')}}" class="nav-link fas fa-credit-card">
                 <i class="nav-icon"></i>
                 <p>ListaVentas</p>
               </a>

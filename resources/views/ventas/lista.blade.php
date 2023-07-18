@@ -41,7 +41,7 @@
                             <td>{{$ve->fecha}}</td>
                         
                             <td class="text-center">
-                                <form action="#" method="GET">
+                                <form action="{{route('ventas.show',$ve->idventas)}}" method="GET">
                                     <button class="btn btn-success btn-sm" type="submit"><i class="fas fa-download"></i></button>  
                                 </form>
                             </td>
@@ -51,9 +51,9 @@
             </tbody>
         </table>
         {{-- Para mostrar formato  --}}
-        {{-- <div class="float-right">
+        <div class="float-right">
             {{$ventas->links()}}
-        </div> --}}
+        </div>
     </div>
 
     
