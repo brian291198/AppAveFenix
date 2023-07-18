@@ -14,6 +14,7 @@
                             @can('user.create')
                             <a class="btn btn-warning" href="{{route('usuarios.create')}}">Nuevo</a>
                             @endcan
+
                             <table class="table table-striped mt-2">
 
 
@@ -42,17 +43,17 @@
                                           @endif
                                       </td>
                                       <td>
-                                        {{-- @can('editar-usuario')
-                                        @endcan --}}
+                                        @can('user.edit')
                                           <a class="btn btn-info" href="{{route('usuarios.edit', $usuario->id)}}">Editar</a>
-                                        
+                                          @endcan
 
-                                         {{--  @can('borrar-usuario')
-                                          @endcan --}}
+                                        
+                                          @can('user.destroy')
                                           {!! Form::open(['method' => 'DELETE', 'route' => ['usuarios.destroy', $usuario->id], 'style' =>'display:inline']) !!}
                                                  {!! Form::submit('Borrar', ['class' => 'btn btn-danger'])!!}
                                           {!! Form::close() !!}
-                                         
+                                          @endcan
+
                                         </td>
                                   </tr>
                                   @endforeach

@@ -16,21 +16,17 @@ class RoleSeeder extends Seeder
     {
         //
         $role1 = Role::create(['name' => 'Admin']);
-        $role2 = Role::create(['name' => 'Blogger']);
 
 
-
-      /*   Permission::create(['name' => 'admin.home'])->syncRoles([$role1,$role2]);
-
-        Permission::create(['name' => 'user.index'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'user.create'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'user.edit'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'user.destroy'])->syncRoles([$role1,$role2]);
- */
-        Permission::create(['name' => 'role.index'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'role.create'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'role.edit'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' => 'role.destroy'])->syncRoles([$role1,$role2]);
+        Permission::create(['name' => 'user.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'user.create'])->syncRoles([$role1]);
+        Permission::create(['name' => 'user.edit'])->syncRoles([$role1]);
+        Permission::create(['name' => 'user.destroy'])->syncRoles([$role1]);
+ 
+        Permission::create(['name' => 'role.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'role.create'])->syncRoles([$role1]);
+        Permission::create(['name' => 'role.edit'])->syncRoles([$role1]);
+        Permission::create(['name' => 'role.destroy'])->syncRoles([$role1]);
 
     }
 }
