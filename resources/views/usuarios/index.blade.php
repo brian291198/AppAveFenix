@@ -11,9 +11,10 @@
                     <div class="card table-responsive">
                         <div class="card-body">
                              
-                            @can('crear-usuario')
+                            {{-- @can('crear-usuario')
+                            @endcan --}}
                             <a class="btn btn-warning" href="{{route('usuarios.create')}}">Nuevo</a>
-                            @endcan
+                            
                             <table class="table table-striped mt-2">
                                 <thead style="background-color:#0067b5;">
                                   <th style="display: none;">ID</th>
@@ -38,15 +39,17 @@
                                           @endif
                                       </td>
                                       <td>
-                                        @can('editar-usuario')
+                                        {{-- @can('editar-usuario')
+                                        @endcan --}}
                                           <a class="btn btn-info" href="{{route('usuarios.edit', $usuario->id)}}">Editar</a>
-                                        @endcan
+                                        
 
-                                          @can('borrar-usuario')
+                                         {{--  @can('borrar-usuario')
+                                          @endcan --}}
                                           {!! Form::open(['method' => 'DELETE', 'route' => ['usuarios.destroy', $usuario->id], 'style' =>'display:inline']) !!}
                                                  {!! Form::submit('Borrar', ['class' => 'btn btn-danger'])!!}
                                           {!! Form::close() !!}
-                                          @endcan
+                                         
                                         </td>
                                   </tr>
                                   @endforeach
