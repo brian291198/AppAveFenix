@@ -1,9 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 
+=======
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VentaController;
+>>>>>>> Ventas
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +44,13 @@ Route::get('/ejemplo', function () {
 /* INICIO RUTAS CONTABILIDAD */
 
 /* FIN RUTAS CONTABILIDAD */
+
+
+/* INICIO RUTAS VENTAS*/
+Route::resource('clientes', ClienteController::class)->names('cliente');
+
+Route::resource('ventas', VentaController::class)->names('ventas');
+/* FIN RUTAS VENTAS */
 
 
 
