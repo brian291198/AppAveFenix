@@ -52,11 +52,12 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-
             $ventas=new Ventas();
             $ventas->idcliente=$request->idcliente;
             $ventas->idestado=$request->idestado;
             $ventas->fecha=now();
+            $ventas->fechaIda = $request->fechaIda_hidden;
+            $ventas->fechaRetorno = $request->fechaRetorno_hidden;
             $ventas->save();
             $itinerarios=$request->iditinerarios;
             $i=0;
@@ -85,7 +86,11 @@ class VentaController extends Controller
     public function show(string $id)
     {
         //
-        return view('ventas.show');
+        $ventas=Ventas::find($id);
+        $clientes=DB::table('clientes')->where('idcliente','=',$ventas->idcliente)->get();
+        $estado=DB::table('estado')->where('idestado','=',$ventas->idestado)->get();
+        $itinerario=DB::table('detalleventa as d')->join('itinerario as i','d.iditinerario','=','i.iditinerario')->where('d.idventas','=',$ventas->idventas)->select('d.cantidad','i.Nomciudad','i.PrecioCiud','i.NomServicio','i.PrecioServ','i.horaida','i.horallegada')->get();
+        return view('ventas.show',compact('ventas','clientes','estado','itinerario'));
     }
 
     /**

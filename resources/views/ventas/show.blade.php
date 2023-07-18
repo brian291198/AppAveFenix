@@ -63,19 +63,24 @@
                 <div class="row">
                     <div class="mb-3 col-sm-12 col-md-12 ">
                         <h5 class="Sub" style="margin-top: -3%;">DATOS DE VIAJE</h5>
-                        <h6 class="descripcion">N#:</h6>
+                        <label for="">N# : 0000{{$ventas->idventas}}</label>
                         
                     </div>
                     <div class="mb-3 col-sm-12 col-md-12 ">
-                        <h6 class="Sub" style="text-align: left;">Pasajero:</h6>
-                        <h6 class="Sub" style="text-align: left;">Destino:</h6>
+                        @foreach ($clientes as $c)
+                            <h6 class="Sub" style="text-align: left;">Pasajero: {{$c->nombre}}</h6>
+                        @endforeach
+                        
+                        @foreach ($estado as $e)
+                            <h6 class="Sub" style="text-align: left;">Estado: {{$e->NomEstado}}</h6>
+                        @endforeach 
                     </div>
                     
                     <div class="mb-3 col-sm-12 col-md-6" style="margin-top: -2%">
-                        <h6 class="Sub" style="text-align: left;">Fecha Ida:</h6>
+                        <h6 class="Sub" style="text-align: left;">Fecha Ida: {{ $ventas->fechaIda }}</h6>
                     </div>
                     <div class="mb-3 col-sm-12 col-md-6" style="margin-top: -2%">
-                        <h6 class="Sub" style="text-align: left;">Fecha Retorno:</h6>
+                        <h6 class="Sub" style="text-align: left;">Fecha Retorno: {{ $ventas->fechaRetorno }}</h6>
                     </div>
                 </div>
             </div>
@@ -91,24 +96,19 @@
                         <th>Precio</th>
                     </thead>
                     <tbody>
-                        <td>David Vigo</td>
-                        <td>-</td>
-                        <td>$</td>
                         <?php $sub_total=0; $igv=0; $sum?>
-                        {{-- @foreach ($productos as $p)
+                        @foreach ($itinerario as $it)
                             <tr>
-                                <td>{{$p->idproducto}}</td>
-                                <td>{{$p->descripcion}}</td>
-                                <td>{{$p->cantidad}}</td>
-                                <td>{{$p->precio}}</td>
+                                <td>Destino: {{$it->Nomciudad}} - Servicio: {{$it->NomServicio}}</td>
+                                <td>{{$it->cantidad}}</td>
                                 <td><?php $total=0;
-                                    $total=$p->cantidad*$p->precio;
+                                    $total=$it->cantidad*($it->PrecioCiud+$it->PrecioServ);
                                     $sub_total=$sub_total+$total;
                                     $number=number_format($total,2,'.','');
                                     echo $number;
                                 ?></td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -121,40 +121,11 @@
                 </div>
             </div>
             <div class="col-12 mb-5">
-                <strong>Presiona el siguiente botón para descargar el PDF:</strong>
-                <button class="btn btn-success btn-sm" id="btnCrearPdf">Click aquí</button>
+                <strong>Presiona el siguiente botón para regresar a la vista:</strong>
+                <a href="{{ route('ventas.index') }}" class="btn btn-success btn-sm">Click aquí</a>
             </div>
         </div>
     </div>
 </body>
-{{-- <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    // Escuchamos el click del botón
-    const $boton = document.querySelector("#btnCrearPdf");
-    $boton.addEventListener("click", () => {
-        const $elementoParaConvertir = document.body; // <-- Aquí puedes elegir cualquier elemento del DOM
-        html2pdf()
-            .set({
-                margin: 1,
-                filename: 'Orden_de_Compra.pdf',
-                image: {
-                    type: 'jpeg',
-                    quality: 0.98
-                },
-                html2canvas: {
-                    scale: 3, // A mayor escala, mejores gráficos, pero más peso
-                    letterRendering: true,
-                },
-                jsPDF: {
-                    unit: "in",
-                    format: "a3",
-                    orientation: 'portrait' // landscape o portrait
-                }
-            })
-            .from($elementoParaConvertir)
-            .save()
-            .catch(err => console.log(err));
-    });
-});
-</script> --}}
+
 </html>

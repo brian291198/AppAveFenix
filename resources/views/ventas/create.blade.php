@@ -24,12 +24,14 @@
     
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="a" class="form-label">Fecha de Ida:</label>
-                <input type="text" id="fechaida" class="form-control" name="fechaida" value="" placeholder="Seleccione una fecha">
+                <input type="text" id="fechaIda" class="form-control" name="fechaIda" value="" placeholder="Seleccione una fecha">
+                <input type="hidden" id="fechaIdaHidden" name="fechaIda_hidden">
             </div>
     
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="a" class="form-label">Fecha de Retorno:</label>
-                <input type="text" id="fecharetorno" class="form-control" name="fecharetorno" value="" placeholder="Seleccione una fecha">
+                <input type="text" id="fechaRetorno" class="form-control" name="fechaRetorno" value="" placeholder="Seleccione una fecha">
+                <input type="hidden" id="fechaRetornoHidden" name="fechaRetorno_hidden">
             </div>
 
             <div class="mb-3 col-sm-12 col-md-2">
@@ -96,46 +98,37 @@
 <script>
     $(document).ready(function() {
     	$('.js-example-basic-single').select2();
+
 	});
 </script>
 
 <script>
-    var fechaInput = document.getElementById("fechaida");
-
-    flatpickr(fechaInput, 
-    {
-        enableTime: false,
-        dateFormat: "Y-m-d",
-    });
-
-    var fechaInputIda = document.querySelector(".datepicker#fechaida");
+    var fechaInputIda = document.getElementById("fechaIda");
+    var fechaInputRetorno = document.getElementById("fechaRetorno");
 
     flatpickr(fechaInputIda, 
     {
         enableTime: false,
         dateFormat: "Y-m-d",
-    });
-</script> 
-
-
-<script>
-    var fechaInput = document.getElementById("fecharetorno");
-
-    flatpickr(fechaInput, 
-    {
-        enableTime: false,
-        dateFormat: "Y-m-d",
+        onChange: function(selectedDates, dateStr) {
+                // Cuando se selecciona una fecha de ida, la almacenamos en el campo oculto
+                document.getElementById("fechaIdaHidden").value = dateStr;
+            }
     });
 
-    var fechaInputRetorno = document.querySelector(".datepicker#fecharetorno");
 
     flatpickr(fechaInputRetorno, 
     {
         enableTime: false,
         dateFormat: "Y-m-d",
+        onChange: function(selectedDates, dateStr) {
+                // Cuando se selecciona una fecha de ida, la almacenamos en el campo oculto
+                document.getElementById("fechaRetornoHidden").value = dateStr;
+            }
     });
 
 </script> 
+
 
 <script>
     var indice=0;
