@@ -15,9 +15,14 @@ use App\Http\Controllers\UsuarioController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('layouts.plantilla');
-});
+}); */
+
+Route::get('/', function () {
+    return view('auth.login');
+  });
+
 
 /* IGNORAR LA SIGUIENTE RUTA  */
 Route::get('/ejemplo', function () {

@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.plantilla')
 @section('content')
     <section class="section">
         <div class="section-header">
