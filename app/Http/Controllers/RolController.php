@@ -12,13 +12,17 @@ use Illuminate\Support\Facades\DB;
 class RolController extends Controller
 {
 
-    function __construct() 
+  /*   function __construct() 
     {
-        $this->middleware('permission:ver-rol|crear-rol|editar-rol|borrar-rol', ['only'=>['index']]);
-        $this->middleware('permission:crear-rol', ['only'=>['create','store']]);
-        $this->middleware('permission:editar-rol', ['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-rol', ['only'=>['destroy']]);
-    }
+        
+        $this->middleware('permission:user.create', ['only'=>['create','store']]);
+        $this->middleware('permission:user.edit', ['only'=>['edit','update']]);
+        $this->middleware('permission:user.destroy', ['only'=>['destroy']]);
+    
+        $this->middleware('permission:role.create', ['only'=>['create','store']]); 
+        $this->middleware('permission:role.edit', ['only'=>['edit','update']]);
+        $this->middleware('permission:role.destroy', ['only'=>['destroy']]);
+    } */
     /**
      * Display a listing of the resource.
      *
@@ -82,8 +86,8 @@ class RolController extends Controller
         //usamos metodo pluck que recupera todos los valores de un id determinado
         $role = Role::find($id);
         $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permission.role_id",$id)
-           ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+           ->pluck('role_has_permissions.permission_id')
            ->all();
            return view('roles.editar', compact('role', 'permission', 'rolePermissions'));
     }

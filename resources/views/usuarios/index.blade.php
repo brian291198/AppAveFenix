@@ -11,17 +11,20 @@
                     <div class="card table-responsive">
                         <div class="card-body">
                              
-                            {{-- @can('crear-usuario')
-                            @endcan --}}
+                            @can('user.create')
                             <a class="btn btn-warning" href="{{route('usuarios.create')}}">Nuevo</a>
-                            
+                            @endcan
                             <table class="table table-striped mt-2">
-                                <thead style="background-color:#0067b5;">
+
+
+                                <thead class="thead-dark">
+                                    <tr>
                                   <th style="display: none;">ID</th>
                                   <th style="color:#fff">Nombre</th>
                                   <th style="color:#fff">E-mail</th>
                                   <th style="color:#fff">Rol</th>
                                   <th style="color:#fff">Acciones</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                   @foreach($usuarios as $usuario)

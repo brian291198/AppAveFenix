@@ -11,14 +11,19 @@
                         <div class="card-body">
 {{-- Definimos las directivas de laravel permission --}}
                             @can('crear-rol')
-                                <a class="btn btn-warning" href="{{route('roles.create')}}">Nuevo</a>
                             @endcan
+                                <a class="btn btn-warning" href="{{route('roles.create')}}">Nuevo</a>
+                            
                             
                             <table class="table table-striped mt-2">
-                                    <thead style="background-color:#0067b5;">
+
+
+                                    <thead class="thead-dark">
+                                        <tr>
                                            <th style="color:#fff;">ID</th>
                                            <th style="color:#fff;">Rol</th>
-                                           <th style="color:#fff">Acciones</th>
+                                           <th style="color:#fff;">Acciones</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($roles as $role)
@@ -27,14 +32,16 @@
                                            <td>{{$role->name}}</td>
                                            <td>
                                                @can('editar-rol')
-                                                    <a class="btn btn-info" href="{{ route('roles.edit',$role->id)}}">Editar</a>
                                                @endcan
+                                                    <a class="btn btn-info" href="{{ route('roles.edit',$role->id)}}">Editar</a>
+                                               
 
                                                @can('borrar-rol')
+                                               @endcan
                                                     {!! Form::open(['method'=>'DELETE', 'route'=>['roles.destroy', $role->id], 'style'=>'display:inline'])!!}
                                                         {!!Form::submit('Borrar', ['class'=> 'btn btn-danger'])!!}
                                                     {!! Form::close()!!}
-                                                @endcan
+                                               
 
                                            </td>
                                         </tr>

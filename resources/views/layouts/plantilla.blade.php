@@ -125,25 +125,33 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+  
+              <img src="usuario.png" alt="" style="margin: 0px 5px 0px 3px">
               <p>
-                Dashboard
+                Acceso
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+              @can('role.index') 
               <li class="nav-item">
                 <a href="{{route('roles.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
+                
                   <p>Roles</p>
                 </a>
               </li>
+              @endcan
+
+              @can('user.index') 
               <li class="nav-item">
                 <a href="{{route('usuarios.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Usuarios</p>
                 </a>
               </li>
+              @endcan
            {{--    <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
