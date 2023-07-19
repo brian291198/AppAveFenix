@@ -85,9 +85,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link" style="text-decoration: none">
-      <img src="/logo_avefenix.png"
-            class=" " alt="Logo Ave Fenix" style="width: 50px; margin:auto 10px; opacity: .8">
-     
+      <img src="/logo_avefenix.png"class=" " alt="Logo Ave Fenix" style="width: 50px; margin:auto 10px; opacity: .8"> 
       <span class="brand-text font-weight-light" >Ave Fenix</span>
     </a>
 
