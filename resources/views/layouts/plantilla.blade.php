@@ -20,6 +20,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @yield('css')
+    
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->

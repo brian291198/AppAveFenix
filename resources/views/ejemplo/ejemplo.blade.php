@@ -1,6 +1,10 @@
 @extends('layouts.plantilla')
 @section('title', 'Ejemplo') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del navegador --}}
 
+@section('css')
+{{-- agregar links de estilos css --}}
+@endsection
+
 @section('content')
     <div class="card">
         <div class="card-header">
