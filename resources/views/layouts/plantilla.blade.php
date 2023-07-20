@@ -22,8 +22,7 @@
   <!-- Scripts -->
   @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-  <!-- Tailwind styles -->
-  <script src="https://cdn.tailwindcss.com"></script>
+ 
 </head>
 
 <body class="hold-transition sidebar-mini">
