@@ -47,7 +47,26 @@ class BusController extends Controller
 
             'cod_institucional'=>'required|max:100',
             'modelo'=>'required|max:100',
-   
+            'anio_fabricacion'=>'required',
+            'peso_toneladas'=>'required',
+            'num_cilindros'=>'required',
+            'num_ocupantes'=>'required',
+            'tipo_transmision'=>'required',
+            'num_ejes'=>'required',
+            'num_ruedas'=>'required',
+            'cod_neumaticos'=>'required',
+            'potencia'=>'required',
+            'torque'=>'required',
+            'ancho'=>'required',
+            'largo'=>'required',
+            'alto'=>'required',
+            'placa'=>'required',
+            'num_motor'=>'required',
+            'num_chasis'=>'required',
+            'combustible'=>'required',
+            'estado_actual'=>'required',
+            'valor'=>'required',
+
     
             ],
             [
@@ -56,6 +75,26 @@ class BusController extends Controller
 
             'modelo.required'=>'Ingrese el modelo',
             'modelo.max'=>'No exceder de 100 caracteres',
+
+            'anio_fabricacion.required'=>'Ingrese la información solicitada',
+            'peso_toneladas.required'=>'Ingrese la información solicitada',
+            'num_cilindros.required'=>'Ingrese la información solicitada',
+            'num_ocupantes.required'=>'Ingrese la información solicitada',
+            'tipo_transmision.required'=>'Ingrese la información solicitada',
+            'num_ejes.required'=>'Ingrese la información solicitada',
+            'num_ruedas.required'=>'Ingrese la información solicitada',
+            'cod_neumaticos.required'=>'Ingrese la información solicitada',
+            'potencia.required'=>'Ingrese la información solicitada',
+            'torque.required'=>'Ingrese la información solicitada',
+            'ancho.required'=>'Ingrese la información solicitada',
+            'largo.required'=>'Ingrese la información solicitada',
+            'alto.required'=>'Ingrese la información solicitada',
+            'placa.required'=>'Ingrese la información solicitada',
+            'num_motor.required'=>'Ingrese la información solicitada',
+            'num_chasis.required'=>'Ingrese la información solicitada',
+            'combustible.required'=>'Ingrese la información solicitada',
+            'estado_actual.required'=>'Ingrese la información solicitada',
+            'valor.required'=>'Ingrese la información solicitada',
 
            
             ]);
@@ -84,7 +123,7 @@ class BusController extends Controller
             $bus->combustible=$request->combustible;
             $bus->estado_actual=$request->estado_actual;
             $bus->valor=$request->valor;
-            $bus->idpersonal=$request->idpersonal;
+            $bus->id_personal=$request->id_personal;
 
             $bus->control='1';
             $bus->save();
@@ -133,7 +172,26 @@ class BusController extends Controller
 
             'cod_institucional'=>'required|max:100',
             'modelo'=>'required|max:100',
-   
+            'anio_fabricacion'=>'required',
+            'peso_toneladas'=>'required',
+            'num_cilindros'=>'required',
+            'num_ocupantes'=>'required',
+            'tipo_transmision'=>'required',
+            'num_ejes'=>'required',
+            'num_ruedas'=>'required',
+            'cod_neumaticos'=>'required',
+            'potencia'=>'required',
+            'torque'=>'required',
+            'ancho'=>'required',
+            'largo'=>'required',
+            'alto'=>'required',
+            'placa'=>'required',
+            'num_motor'=>'required',
+            'num_chasis'=>'required',
+            'combustible'=>'required',
+            'estado_actual'=>'required',
+            'valor'=>'required',
+
     
             ],
             [
@@ -142,6 +200,26 @@ class BusController extends Controller
 
             'modelo.required'=>'Ingrese el modelo',
             'modelo.max'=>'No exceder de 100 caracteres',
+
+            'anio_fabricacion.required'=>'Ingrese la información solicitada',
+            'peso_toneladas.required'=>'Ingrese la información solicitada',
+            'num_cilindros.required'=>'Ingrese la información solicitada',
+            'num_ocupantes.required'=>'Ingrese la información solicitada',
+            'tipo_transmision.required'=>'Ingrese la información solicitada',
+            'num_ejes.required'=>'Ingrese la información solicitada',
+            'num_ruedas.required'=>'Ingrese la información solicitada',
+            'cod_neumaticos.required'=>'Ingrese la información solicitada',
+            'potencia.required'=>'Ingrese la información solicitada',
+            'torque.required'=>'Ingrese la información solicitada',
+            'ancho.required'=>'Ingrese la información solicitada',
+            'largo.required'=>'Ingrese la información solicitada',
+            'alto.required'=>'Ingrese la información solicitada',
+            'placa.required'=>'Ingrese la información solicitada',
+            'num_motor.required'=>'Ingrese la información solicitada',
+            'num_chasis.required'=>'Ingrese la información solicitada',
+            'combustible.required'=>'Ingrese la información solicitada',
+            'estado_actual.required'=>'Ingrese la información solicitada',
+            'valor.required'=>'Ingrese la información solicitada',
 
            
             ]);
@@ -169,7 +247,7 @@ class BusController extends Controller
             $bus->estado_actual=$request->estado_actual;
             $bus->valor=$request->valor;
 
-            $bus->idpersonal=$request->idpersonal;
+            $bus->id_personal=$request->id_personal;
             $bus->save();
    
               return redirect()->route('Bus.index')->with('datos','Registro Nuevo Guardado...!');

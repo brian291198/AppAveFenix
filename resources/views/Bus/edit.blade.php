@@ -183,11 +183,11 @@
 
 
         <div class="form-group" >
-        <label for="idpersonal"><font style="verticalalign: inherit;">Personal Responsable:</font></label>
+        <label for="id_personal"><font style="verticalalign: inherit;">Personal Responsable:</font></label>
         <select style="padding-bottom:10px;width:200px" class="form-control select2 select2-hiddenaccessible selectpicker" data-select2-
-        id="1" tabindex="-1" ariahidden="true" id="idpersonal" name="idpersonal" data-livesearch="true">
+        id="1" tabindex="-1" ariahidden="true" id="id_personal" name="id_personal" data-livesearch="true">
 
-        @foreach($personal as $itempersonal) <option value="{{ $itempersonal->idpersonal }}" selected>{{ $itempersonal->nombre." ".$itempersonal->apellidos}}</option>
+        @foreach($personal as $itempersonal) <option value="{{ $itempersonal->id_personal }}" selected>{{ $itempersonal->apellidos}}</option>
         @endforeach
  
         </select>
