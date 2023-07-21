@@ -18,6 +18,17 @@ use App\Http\Controllers\BusController;
 /* CONTROLADORES DE RECURSOS HUMANOS */
 use App\Http\Controllers\PersonalController;
 
+/* CONTROLADORES DE ENCOMIENDAS */
+use App\Http\Controllers\AgenciaController;
+use App\Http\Controllers\TarifaController;
+use App\Http\Controllers\ComprobanteController;
+use App\Http\Controllers\TransporteController;
+use App\Http\Controllers\EnvioController;
+use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\PaqueteController;
+use App\Http\Controllers\RutaController;
+use App\Http\Controllers\ReclamoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -136,7 +147,6 @@ Route::resource('envios', EnvioController::class)->names('envios');
 Route::resource('paquetes', PaqueteController::class)->names('paquetes');
 Route::resource('reclamos', ReclamoController::class)->names('reclamos');
 Route::resource('rutas', RutaController::class)->names('rutas');
-
 /* FIN RUTAS ENCOMIENDA */
 
 
