@@ -52,28 +52,44 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
+
+        try{
+            DB::beginTransaction();
+
             $ventas=new Ventas();
             $ventas->idcliente=$request->idcliente;
             $ventas->idestado=$request->idestado;
             $ventas->fecha=now();
-            $ventas->fechaIda = $request->fechaIda_hidden;
-            $ventas->fechaRetorno = $request->fechaRetorno_hidden;
+            $ventas->fechaIda = $request->fechaIda;
+            $ventas->fechaRetorno = $request->fechaRetorno;
             $ventas->save();
             $itinerarios=$request->iditinerarios;
             $i=0;
-            foreach($itinerarios as $it){
-                $detalle=new DetalleVenta();
-                $detalle->idventas=$ventas->idventas;
-                $detalle->iditinerario=$it[0];
-                $detalle->cantidad=$request->cantidad[$i];
+            $itinerarios = $request->iditinerarios;
+            $cantidades = $request->cantidad;
+
+            for ($i = 0; $i < count($itinerarios); $i++) {
+                $itinerario_data = explode('_', $itinerarios[$i]);
+                $detalle = new DetalleVenta();
+                $detalle->idventas = $ventas->idventas;
+                $detalle->iditinerario = $itinerario_data[0];
+                $detalle->cantidad = $cantidades[$i];
                 $detalle->save();
 
-                $itinerario=Itinerario::find($it[0]);
-                $itinerario->asientos=$itinerario->asientos-$request->cantidad[$i];
+                $itinerario = Itinerario::find($itinerario_data[0]);
+                $itinerario->asientos = $itinerario->asientos - $cantidades[$i];
                 $itinerario->save();
-
-                $i++;
             }
+
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {
+            dd($e);
+            DB::rollback();
+        }
+
+            
 
         //return $detalle;
         return redirect()->route('ventas.index')->with('datos','La venta se ha creado correctamente');
