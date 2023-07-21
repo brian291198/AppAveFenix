@@ -12,10 +12,11 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    const PAGINATION=5;
+    public function index(Request $request)
     {
-        //
-        $cliente=Cliente::all();
+        $buscarpor=trim($request->get('buscarpor'));
+        $cliente=Cliente::where('nombre','LIKE','%'.$buscarpor.'%')->paginate($this::PAGINATION);;
         //return $cliente;
         return view('clientes.index', compact('cliente'));
     }
