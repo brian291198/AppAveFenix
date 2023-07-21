@@ -20,6 +20,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @yield('css')
+    
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -85,9 +88,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link" style="text-decoration: none">
-      <img src="/logo_avefenix.png"
-            class=" " alt="Logo Ave Fenix" style="width: 50px; margin:auto 10px; opacity: .8">
-     
+      <img src="/logo_avefenix.png"class=" " alt="Logo Ave Fenix" style="width: 50px; margin:auto 10px; opacity: .8"> 
       <span class="brand-text font-weight-light" >Ave Fenix</span>
     </a>
 
@@ -162,6 +163,55 @@
           </li>
 
         {{-- INICIO SUBSISTEMA MANTENIMIENTO --}}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+     
+            <img src="mantenimiento.png" alt="" style="margin: 0px 5px 0px 3px">
+            <p>
+              Mantenimiento
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('Herramienta.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Herramientas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Proveedor.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Proveedores</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Taller.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Taller</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Recurso.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Recursos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Prioridad.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Prioridades</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Bus.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Buses</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
 
         {{-- FIN SUBSISTEMA MANTENIMIENTO --}}
 
@@ -203,6 +253,36 @@
 
           
         {{-- INICIO SUBSISTEMA RECURSOS HUMANOS --}}
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Recursos Humanos
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('Personal.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Personal</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Otro</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Otro</p>
+              </a>
+            </li>
+          </ul>
+        </li>
 
         {{-- FIN SUBSISTEMA RECURSOS HUMANOS --}}
 
