@@ -41,13 +41,27 @@
                                 Reserva
                             @elseif ($ve->idestado == 2)
                                 Pagado
+                            @elseif ($ve->idestado == 3)
+                                Cancelado
                             @endif</td>
                             <td>{{$ve->fecha}}</td>
                         
                             <td class="text-center">
-                                <form action="{{route('ventas.show',$ve->idventas)}}" method="GET">
-                                    <button class="btn btn-success btn-sm" type="submit"><i class="fas fa-download"></i></button>  
-                                </form>
+                                <div class="row ">
+
+                                    <div class="col-6 text-right">
+                                        <form action="{{route('ventas.show',$ve->idventas)}}" method="GET">
+                                            <button class="btn btn-success btn-sm" type="submit"><i class="fas fa-download"></i></button>  
+                                        </form>
+                                    </div>
+                                    
+                                    <div class="col-6 text-left">
+                                        <form action="{{route('ventas.edit',$ve->idventas)}}" method="GET">
+                                            <button class="btn btn btn-warning btn-sm" type="submit"><i class="fas fa-sticky-note"></i></button>  
+                                        </form>
+                                    </div>
+                                </div>
+
                             </td>
                         </tr>
                     @endforeach

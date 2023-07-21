@@ -105,24 +105,33 @@ class VentaController extends Controller
         $ventas=Ventas::find($id);
         $clientes=DB::table('clientes')->where('idcliente','=',$ventas->idcliente)->get();
         $estado=DB::table('estado')->where('idestado','=',$ventas->idestado)->get();
-        $itinerario=DB::table('detalleventa as d')->join('itinerario as i','d.iditinerario','=','i.iditinerario')->where('d.idventas','=',$ventas->idventas)->select('d.cantidad','i.Nomciudad','i.PrecioCiud','i.NomServicio','i.PrecioServ','i.horaida','i.horallegada')->get();
+        $itinerario=DB::table('detalleventa as d')->join('itinerario as i','d.iditinerario','=','i.iditinerario')->where('d.idventas','=',$ventas->idventas)->select('d.iditinerario','i.asientos','d.cantidad','i.Nomciudad','i.PrecioCiud','i.NomServicio','i.PrecioServ','i.horaida','i.horallegada')->get();
         return view('ventas.show',compact('ventas','clientes','estado','itinerario'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Ventas $venta)
     {
         //
+        $clientes=DB::table('clientes')->where('idcliente','=',$venta->idcliente)->get();
+        $estado=Estado::all();
+        $itinerario=DB::table('detalleventa as d')->join('itinerario as i','d.iditinerario','=','i.iditinerario')->where('d.idventas','=',$venta->idventas)->select('d.iditinerario','i.asientos','d.cantidad','i.Nomciudad','i.PrecioCiud','i.NomServicio','i.PrecioServ','i.horaida','i.horallegada')->get();
+        //return $clientes;
+        return view('ventas.edit',compact('venta','clientes','estado','itinerario'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Ventas $venta)
     {
         //
+        $venta->idestado=$request->idestado;
+        $venta->save();
+        //return $venta;
+        return redirect()->route('ventas.index')->with('datos','Se ha Actualizado los datos de cliente exitosamente');
     }
 
     /**
