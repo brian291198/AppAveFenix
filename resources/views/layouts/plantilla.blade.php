@@ -163,6 +163,49 @@
           </li>
 
         {{-- INICIO SUBSISTEMA MANTENIMIENTO --}}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+     
+            <img src="mantenimiento.png" alt="" style="margin: 0px 5px 0px 3px">
+            <p>
+              Mantenimiento
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('Herramienta.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Herramientas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Proveedor.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Proveedores</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Taller.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Taller</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Recurso.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Recursos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('Prioridad.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Prioridades</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
 
         {{-- FIN SUBSISTEMA MANTENIMIENTO --}}
 
