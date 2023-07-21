@@ -300,7 +300,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/paquetes" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Paquetes</p>
               </a>
@@ -321,6 +321,35 @@
               <a href="/transportes" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Transportes</p>
+              </a>
+            </li>
+              <a href="/envios" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Envios</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/comprobantes" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Comprobantes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/agencias" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Agencias</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/rutas" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Rutas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/reclamos" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Reclamos</p>
               </a>
             </li>
           </ul>
