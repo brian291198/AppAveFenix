@@ -127,6 +127,7 @@ Route::resource('ventas', VentaController::class)->names('ventas');
 
 
 /* INICIO RUTAS ENCOMIENDA */
+Route::resource('tarifas', TarifaController::class)->names('tarifa');
 
 /* FIN RUTAS ENCOMIENDA */
 
