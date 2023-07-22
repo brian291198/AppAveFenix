@@ -16,7 +16,8 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         $buscarpor=trim($request->get('buscarpor'));
-        $cliente=Cliente::where('nombre','LIKE','%'.$buscarpor.'%')->paginate($this::PAGINATION);;
+        $cliente=Cliente::where('nombre','LIKE','%'.$buscarpor.'%')
+        ->paginate($this::PAGINATION);;
         //return $cliente;
         return view('clientes.index', compact('cliente'));
     }

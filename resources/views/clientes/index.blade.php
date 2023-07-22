@@ -5,12 +5,14 @@
     <div class="text-center">
         <h1 class="my-5">Lista de Clientes</h1>
     </div>
+
     <div class="row ml-auto col-md-4 mb-3">
         <form class="d-flex ml-auto" method="get" action="{{route('cliente.index')}}">
             <input class="form-control me-1" type="text" name="buscarpor" placeholder="Buscar por Nombre" aria-label="Search" value="">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
     </div>
+    
     @if (session('datos'))
       <div id="mensaje">
         <div class="alert alert-primary alert-dismissible fade show" role="alert">

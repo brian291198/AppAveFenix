@@ -15,17 +15,14 @@ class VentaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    const PAGINATION=10;
-    public function index()
+    const PAGINATION=5;
+    public function index(Request $request)
     {
-        //
-        // $ventas = Ventas::join('clientes', 'ventas.idcliente', '=', 'clientes.idcliente')
-        // ->select('ventas.idventas', 'clientes.nombre', 'ventas.fecha')
-        // ->get();
-
-        //return view('ventas.lista', ['ventas' => $ventas]);
-
-        $ventas=DB::table('ventas as v')->join('clientes as c','v.idcliente','=','c.idcliente')->select('v.idventas','c.nombre','v.idestado','v.fecha')->paginate($this::PAGINATION);
+        $buscarpor=trim($request->get('buscarpor'));
+        $ventas=DB::table('ventas as v')->join('clientes as c','v.idcliente','=','c.idcliente')
+        ->select('v.idventas','c.nombre','v.idestado','v.fecha')
+        ->where('c.nombre','LIKE','%'.$buscarpor.'%')
+        ->paginate($this::PAGINATION);
 
         return view('ventas.lista', compact('ventas')); // Pasar 'ventas' en lugar de 'ventas.lista'
     }
