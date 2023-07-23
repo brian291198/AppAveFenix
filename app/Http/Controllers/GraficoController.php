@@ -17,14 +17,29 @@ class GraficoController extends Controller
             // Verifica si el valor de 'total' es mayor que cero o no es nulo
             if ($p->total > 0) {
                 $puntos[] = [
-                    'name' => $p->Nomciudad, 
-                    'y' => floatval($p->total),
-                    'monto_total' => floatval($p->monto_total)
+                    'name' => $p->Nomciudad, //Nombre de ciudad
+                    'y' => floatval($p->total), //cantidad de pasajes
+                    'monto_total' => floatval($p->monto_total) //Monto total de pasajes vendidos
 
                 ];
             }
         }
-        return view('graficos.index', ['data' => json_encode($puntos)]);
+
+        $cancelados=DB::select('CALL pasajes_cancelados();');
+        $vector=[];
+        foreach ($cancelados as $c) {
+            // Verifica si el valor de 'total' es mayor que cero o no es nulo
+            if ($c->total_cancelados > 0) {
+                $vector[] = [
+                    'name' => $c->Nomciudad, 
+                    'y' => floatval($c->total_cancelados)
+
+                ];
+            }
+        }
+        //return view('graficos.index',['dato' => json_encode($vector)],);
+        //return $vector;
+        return view('graficos.index')->with('data', json_encode($puntos))->with('dato', json_encode($vector));
         //return $puntos;
     }
 
