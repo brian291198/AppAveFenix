@@ -39,7 +39,7 @@
             <tbody>
                 @if (count($ventas)<=0)
                     <tr>
-                    <td class="text-center" colspan="5">No hay Registros...</td>
+                    <td class="text-center" colspan="6">No hay Registros...</td>
                     </tr>
                 @else
                     @foreach ($ventas as $ve)

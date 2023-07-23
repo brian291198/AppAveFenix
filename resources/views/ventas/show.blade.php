@@ -70,17 +70,25 @@
                         @foreach ($clientes as $c)
                             <h6 class="Sub" style="text-align: left;">Pasajero: {{$c->nombre}}</h6>
                         @endforeach
-                        
+                    </div>
+                    
+                    <div class="mb-3 col-sm-12 col-md-6" style="margin-top: -2%">
                         @foreach ($estado as $e)
                             <h6 class="Sub" style="text-align: left;">Estado: {{$e->NomEstado}}</h6>
                         @endforeach 
                     </div>
-                    
+
+                    <div class="mb-3 col-sm-12 col-md-6" style="margin-top: -2%">
+                        @foreach ($formapago as $fo)
+                            <h6 class="Sub" style="text-align: right;">Forma de pago: {{$fo->NombrePago}}</h6>
+                        @endforeach 
+                    </div>
+
                     <div class="mb-3 col-sm-12 col-md-6" style="margin-top: -2%">
                         <h6 class="Sub" style="text-align: left;">Fecha Ida: {{ $ventas->fechaIda }}</h6>
                     </div>
                     <div class="mb-3 col-sm-12 col-md-6" style="margin-top: -2%">
-                        <h6 class="Sub" style="text-align: left;">Fecha Retorno: {{ $ventas->fechaRetorno }}</h6>
+                        <h6 class="Sub" style="text-align: right;">Fecha Retorno: {{ $ventas->fechaRetorno }}</h6>
                     </div>
                 </div>
             </div>

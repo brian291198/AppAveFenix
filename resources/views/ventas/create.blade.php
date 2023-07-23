@@ -47,7 +47,7 @@
                 <label for="idformapago" class="form-label">Forma de Pago: </label>
                 <select name="idformapago" id="idformapago" class="form-control">
                     @foreach ($formapago as $fo)
-                        <option value="{{$fo->idformapago}}">{{$fo->formapago}}</option>
+                        <option value="{{$fo->idformapago}}">{{$fo->NombrePago}}</option>
                     @endforeach
                 </select>
             </div>
@@ -163,9 +163,9 @@
         var fechaRetorno = new Date(document.getElementById('fechaRetorno').value);
 
         if (fechaIda >= fechaRetorno) {
-            alert("Elegir Fecha válida");
             document.getElementById('fechaIda').value = "";
             document.getElementById('fechaRetorno').value = "";
+            fechaInputRetorno.disabled = true;
         }
     }
 
