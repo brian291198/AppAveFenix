@@ -43,6 +43,15 @@
                 </select>
             </div>
 
+            <div class="mb-3 col-sm-12 col-md-2">
+                <label for="idformapago" class="form-label">Forma de Pago: </label>
+                <select name="idformapago" id="idformapago" class="form-control">
+                    @foreach ($formapago as $fo)
+                        <option value="{{$fo->idformapago}}">{{$fo->formapago}}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="iditinerario" class="form-label">Ciudad-Servicio: </label>

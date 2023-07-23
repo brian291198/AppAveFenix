@@ -8,6 +8,7 @@ use App\Models\Estado;
 use App\Models\DetalleVenta;
 use App\Models\Ventas;
 use App\Models\Itinerario;
+use App\Models\Formapago;
 use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
@@ -20,7 +21,7 @@ class VentaController extends Controller
     {
         $buscarpor=trim($request->get('buscarpor'));
         $ventas=DB::table('ventas as v')->join('clientes as c','v.idcliente','=','c.idcliente')
-        ->select('v.idventas','c.nombre','v.idestado','v.fecha')
+        ->select('v.idventas','c.nombre','v.idestado','v.idformapago','v.fecha')
         ->where('c.nombre','LIKE','%'.$buscarpor.'%')
         ->paginate($this::PAGINATION);
 
@@ -35,10 +36,11 @@ class VentaController extends Controller
         
         $cliente = Cliente::all();
         $estado = Estado::all();
+        $formapago = Formapago::all();
         $itinerarios = Itinerario::all();
 
         //return $itinerario;
-        return view('ventas.create', compact('cliente', 'itinerarios','estado'));
+        return view('ventas.create', compact('cliente', 'itinerarios','estado','formapago'));
         //return view('ventas.create', ['opciones' => $opciones],compact('cliente','ciudades','itinerario'));
 
     }
@@ -56,6 +58,7 @@ class VentaController extends Controller
             $ventas=new Ventas();
             $ventas->idcliente=$request->idcliente;
             $ventas->idestado=$request->idestado;
+            $ventas->idformapago=$request->idformapago;
             $ventas->fecha=now();
             $ventas->fechaIda = $request->fechaIda;
             $ventas->fechaRetorno = $request->fechaRetorno;

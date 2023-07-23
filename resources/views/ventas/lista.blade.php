@@ -30,6 +30,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Forma de pago</th>
                 <th scope="col">Fecha</th>
                 
                 <th colspan="2" class="text-center">Accion</th>
@@ -45,12 +46,23 @@
                         <tr>
                             <td>{{$ve->idventas}}</td>
                             <td>{{$ve->nombre}}</td>
+
                             <td>@if ($ve->idestado == 1)
                                 Reserva
                             @elseif ($ve->idestado == 2)
                                 Pagado
                             @elseif ($ve->idestado == 3)
                                 Cancelado
+                            @endif</td>
+
+                            <td>@if ($ve->idformapago == 1)
+                                Efectivo
+                            @elseif ($ve->idformapago == 2)
+                                Tarjeta Crédito
+                            @elseif ($ve->idformapago == 3)
+                                Tarjeta Débido
+                            @elseif ($ve->idformapago == 4)
+                                Transferencia
                             @endif</td>
                             <td>{{$ve->fecha}}</td>
                         
