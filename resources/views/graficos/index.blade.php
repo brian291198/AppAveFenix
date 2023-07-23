@@ -78,7 +78,7 @@ Highcharts.chart('graf', {
         type: 'column'
     },
     title: {
-        text: 'Gráfico de los 10 Productos mas Comprados'
+        text: 'PASAJES CANCELADOS/CIUDAD'
     },
     subtitle: {
         text: ''
