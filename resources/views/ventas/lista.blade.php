@@ -48,11 +48,11 @@
                             <td>{{$ve->nombre}}</td>
 
                             <td>@if ($ve->idestado == 1)
-                                Reserva
+                                <button class="btn btn-primary btn-sm" disabled>Reserva</button>
                             @elseif ($ve->idestado == 2)
-                                Pagado
+                                <button class="btn btn-success btn-sm" disabled>Pagado</button>
                             @elseif ($ve->idestado == 3)
-                                Cancelado
+                                <button class="btn btn-danger btn-sm" disabled>Cancelado</button>
                             @endif</td>
 
                             <td>@if ($ve->idformapago == 1)

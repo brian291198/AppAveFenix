@@ -134,7 +134,7 @@ class VentaController extends Controller
         $venta->idestado=$request->idestado;
         $venta->save();
         //return $venta;
-        //return redirect()->route('ventas.index')->with('datos','Se ha Actualizado los datos de cliente exitosamente');
+        return redirect()->route('ventas.index')->with('datos','Se ha Actualizado los datos de cliente exitosamente');
     }
 
     /**
