@@ -283,6 +283,11 @@
                 <p>ListaVentas</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{route('graficos.index')}}" class="nav-link">
+                <i class="far fa-chart-bar nav-icon"></i>
+                <p>Reporte</p>
+              </a>
           </ul>
         </li>
         {{-- FIN SUBSISTEMA VENTAS --}}
