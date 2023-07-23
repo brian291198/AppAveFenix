@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
     <div> <br></div>   
-    <div id="grafico"></div>
+    <div id="grafico"></div>  
+
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
@@ -52,13 +53,14 @@
     },
 
     tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:2f}</b> <br/>'
+        headerFormat: '<b><span style="font-size:13px">{series.name}</span></b><br>',
+        //Muestra Ciudad-Pasajes y Monto
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:{point.y:2f} pasajes<br/><b>Monto total:</b> S/. {point.monto_total:2f} <br/>'
     },
 
     series: [
         {
-            name: "Ciudad",
+            name: "",
             colorByPoint: true,
             data: <?php echo $data?>
         }

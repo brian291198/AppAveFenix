@@ -16,11 +16,16 @@ class GraficoController extends Controller
         foreach ($pasajes as $p) {
             // Verifica si el valor de 'total' es mayor que cero o no es nulo
             if ($p->total > 0) {
-                $puntos[] = ['name' => $p->Nomciudad, 'y' => floatval($p->total)];
+                $puntos[] = [
+                    'name' => $p->Nomciudad, 
+                    'y' => floatval($p->total),
+                    'monto_total' => floatval($p->monto_total)
+
+                ];
             }
         }
         return view('graficos.index', ['data' => json_encode($puntos)]);
-        /* return $puntos; */
+        //return $puntos;
     }
 
 }
