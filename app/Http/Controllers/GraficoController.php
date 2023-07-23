@@ -13,8 +13,11 @@ class GraficoController extends Controller
     {
         $pasajes=DB::select('CALL pasajes_vendidos();');
         $puntos=[];
-        foreach($pasajes as $p){
-            $puntos[] = ['name' => $p->Nomciudad, 'y' => floatval($p->total)];
+        foreach ($pasajes as $p) {
+            // Verifica si el valor de 'total' es mayor que cero o no es nulo
+            if ($p->total > 0) {
+                $puntos[] = ['name' => $p->Nomciudad, 'y' => floatval($p->total)];
+            }
         }
         return view('graficos.index', ['data' => json_encode($puntos)]);
         /* return $puntos; */

@@ -61,6 +61,9 @@
               @endforeach
               </tbody>
         </table>
+        <div class="float-right">
+          {{$cliente->links()}}
+        </div>
     </div>
     
     <div class="text-center mb-5">

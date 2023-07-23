@@ -1,7 +1,8 @@
 @extends('layouts.plantilla')
 @section('title', 'Gráficos')
 @section('content')
-<div class="container">   
+<div class="container">
+    <div> <br></div>   
     <div id="grafico"></div>
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -17,7 +18,8 @@
         type: 'column'
     },
     title: {
-        text: 'Cantidad de pasajes vendidos por Ciudad'
+        text: 'Pasajes vendidos por Ciudad',
+
     },
     subtitle: {
         text: ''
@@ -32,7 +34,7 @@
     },
     yAxis: {
         title: {
-            text: 'Total percent market share'
+            text: '# Pasajes'
         }
 
     },
@@ -51,12 +53,12 @@
 
     tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:2f}</b> productos<br/>'
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:2f}</b> <br/>'
     },
 
     series: [
         {
-            name: "Browsers",
+            name: "Ciudad",
             colorByPoint: true,
             data: <?php echo $data?>
         }
