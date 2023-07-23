@@ -36,10 +36,13 @@
                 <label for="idestado" class="form-label">Estado: </label>
                 <select name="idestado" id="idestado" class="form-control">
                     @foreach ($estado as $e)
+                        @if ($e->idestado == 1 || $e->idestado == 2)
                         <option value="{{$e->idestado}}">{{$e->NomEstado}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
+
 
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="iditinerario" class="form-label">Ciudad-Servicio: </label>
@@ -111,20 +114,21 @@
         
         onChange: function(selectedDates, dateStr) {
         // Obtener la fecha actual
-        var fechaActual = new Date().toISOString().split('T')[0];
+            var fechaActual = new Date().toISOString().split('T')[0];
         
-        if (dateStr < fechaActual ) {
-            //Mensaje de error, permanece desahbilitado FechaRetorno
-            alert("Elegir fecha válida");
-            document.getElementById('fechaIda').value = ""; // Limpiar el valor del campo Fecha de Ida
-        } else {
-                // Cuando se selecciona una fecha de ida válida, la almacenamos en el campo oculto
-                document.getElementById("fechaIda").value = dateStr;
-                // Habilitar Fecha de Retorno y establecer la fecha mínima
-                fechaInputRetorno.disabled = false;
-            
+            if (dateStr < fechaActual ) {
+                //Mensaje de error, permanece desahbilitado FechaRetorno
+                alert("Elegir fecha válida");
+                document.getElementById('fechaIda').value = ""; // Limpiar el valor del campo Fecha de Ida
+            } else {
+                    // Cuando se selecciona una fecha de ida válida, la almacenamos en el campo oculto
+                    document.getElementById("fechaIda").value = dateStr;
+                    // Habilitar Fecha de Retorno y establecer la fecha mínima
+                    fechaInputRetorno.disabled = false;
+                
+            }
+            validarFechas();
         }
-    }
     });
 
 
@@ -141,9 +145,21 @@
                 document.getElementById("fechaRetorno").value = dateStr;
             }
                 // Cuando se selecciona una fecha de ida, la almacenamos en el campo oculto
-                
+            validarFechas();    
         }
     });
+
+    function validarFechas() {
+        var fechaIda = new Date(document.getElementById('fechaIda').value);
+        var fechaRetorno = new Date(document.getElementById('fechaRetorno').value);
+
+        if (fechaIda >= fechaRetorno) {
+            alert("Elegir Fecha válida");
+            document.getElementById('fechaIda').value = "";
+            document.getElementById('fechaRetorno').value = "";
+        }
+    }
+
 
 </script> 
 

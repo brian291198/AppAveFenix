@@ -42,6 +42,7 @@
                 </select>
             </div>
 
+
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="iditinerario" class="form-label">Ciudad-Servicio: </label>
                 <select name="iditinerario" id="iditinerario" class="form-control js-example-basic-single" onchange="agregar()" disabled="true">
@@ -53,6 +54,7 @@
                     @endforeach
                 </select>
             </div>
+            
     
             <div class="table-responsive">
                 <table id="detalle" class="table table-hover">
@@ -109,7 +111,7 @@
 @section('script')
 <script>
     $(document).ready(function() {
-    	$('.js-example-basic-single').select2();
+    $('.js-example-basic-single').select2();
 
 	});
 </script>

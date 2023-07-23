@@ -93,7 +93,7 @@ Highcharts.chart('graf', {
     },
     yAxis: {
         title: {
-            text: 'Total percent market share'
+            text: '# Pasajes'
         }
 
     },
