@@ -202,7 +202,7 @@
                 igv=sub_total*0.18;
                 total=igv+sub_total;
 
-                fila = '<tr id="fila' + indice + '" class="text-center"><td><a href="#" class="btn btn-danger btn-sm" onclick="quitar(' + indice + ',' + totales + ',' + datosciudad[0] + ')">Quitar</a></td><td><input type="hidden" name="iditinerarios[]" value="' + datosciudad[0] + '">' + datosciudad[1] + '</td><td>' + datosciudad[3] + '</td><td>' + datosciudad[5] + '</td><td>' + datosciudad[6] + '</td> <td>' + datosciudad[2] + '</td><td><input type="hidden" name="cantidad[]" value="' + cantidad + '">' + cantidad + '</td><td>' + parseFloat(totales).toFixed(2) + '</td></tr>';
+                fila = '<tr id="fila' + indice + '" class="text-center"><td><a href="#" class="btn btn-primary btn-sm" onclick="quitar(' + indice + ',' + totales + ',' + datosciudad[0] + ')">Quitar</a></td><td><input type="hidden" name="iditinerarios[]" value="' + datosciudad[0] + '">' + datosciudad[1] + '</td><td>' + datosciudad[3] + '</td><td>' + datosciudad[5] + '</td><td>' + datosciudad[6] + '</td> <td>' + datosciudad[2] + '</td><td><input type="hidden" name="cantidad[]" value="' + cantidad + '">' + cantidad + '</td><td>' + parseFloat(totales).toFixed(2) + '</td></tr>';
 
                 $('#detalle').append(fila);	                    
 
@@ -210,13 +210,19 @@
 
                 /* alert('vector'+vector);	 */	
                 indice++;
-                i++;		
+                i++;
+                 
 		    }
         }else{
             alert('Debe ingresar una cantidad mayor a 0')
+            cancelarAgregar();// Llamamos a la función cancelarAgregar cuando se cancela el ingreso de cantidad
         }
 		
 	}
+
+    function cancelarAgregar() {
+        $('#iditinerario').prop('disabled', false); // Habilitamos el select option nuevamente
+    }
 
     function actualizarValores() {
         document.getElementById('sub-total').innerHTML = parseFloat(sub_total).toFixed(2);
@@ -253,6 +259,8 @@
         if (indice == 0) {
             document.getElementById('idagregar').disabled = true;
             $('#iditinerario').prop('disabled', false);
+        } else {
+            cancelarAgregar(); // Llamamos a la función cancelarAgregar cuando se quita un elemento de la tabla
         }
     }
 
