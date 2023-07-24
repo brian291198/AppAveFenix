@@ -84,7 +84,7 @@ class BusController extends Controller
             $bus->combustible=$request->combustible;
             $bus->estado_actual=$request->estado_actual;
             $bus->valor=$request->valor;
-            $bus->idpersonal=$request->idpersonal;
+            $bus->id_personal=$request->idpersonal;
 
             $bus->control='1';
             $bus->save();
@@ -169,7 +169,7 @@ class BusController extends Controller
             $bus->estado_actual=$request->estado_actual;
             $bus->valor=$request->valor;
 
-            $bus->idpersonal=$request->idpersonal;
+            $bus->id_personal=$request->idpersonal;
             $bus->save();
    
               return redirect()->route('Bus.index')->with('datos','Registro Nuevo Guardado...!');

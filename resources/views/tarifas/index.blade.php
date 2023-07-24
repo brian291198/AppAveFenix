@@ -23,27 +23,28 @@ navegador --}}
 
         <div class="space-y-10">
             <div>
-                <a class="bg-[#4D80F6] rounded p-3" href="{{route('tarifas.create')}}">Registrar tarifa</a>
+                <a class="btn btn-primary" href="{{route('tarifas.create')}}">Registrar tarifa</a>
             </div>
-            <table class="w-full">
-                <tr>
+            <table class="table mt-4">
+                <tr class="table-dark">
                     <th>ID</th>
                     <th>Monto</th>
                     <th>Descripcion</th>
                     <th>Estado</th>
+                    <th>Opciones</th>
                 </tr>
                 @foreach($tarifas as $tarifa)
                     <tr>
-                        <td class="border p-2">{{$tarifa->TarifaID}}</td>
-                        <td class="border p-2">{{$tarifa->Monto}}</td>
-                        <td class="border p-2">{{$tarifa->Descripcion}}</td>
-                        <td class="border p-2">{{$tarifa->Estado}}</td>
-                        <td class="border p-2 space-y-2">
-                            <a class="text-xs bg-[#20fc03] rounded p-1" href="{{route('tarifas.edit', ['tarifa' => $tarifa])}}">Editar</a>
-                            <form method="post" action="{{route('tarifas.delete', ['tarifa' => $tarifa])}}">
+                        <td class="align-middle">{{$tarifa->TarifaID}}</td>
+                        <td class="align-middle">{{$tarifa->Monto}}</td>
+                        <td class="align-middle">{{$tarifa->Descripcion}}</td>
+                        <td class="align-middle">{{$tarifa->Estado}}</td>
+                        <td class="d-flex">
+                            <a class="btn btn-primary mr-2" href="{{route('tarifas.edit', ['tarifa' => $tarifa])}}">Editar</a>
+                            <form method="post" action="{{route('tarifas.destroy', ['tarifa' => $tarifa])}}">
                                 @csrf
                                 @method('delete')
-                                <input class="text-xs bg-[#fc0703] rounded p-1" type="submit" value="Eliminar">
+                                <input class="btn btn-danger" type="submit" value="Eliminar">
                             </form>
                         </td>
                     </tr>

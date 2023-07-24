@@ -1,11 +1,11 @@
 @extends('layouts.plantilla')
-@section('title', 'Transportes') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
+@section('title', 'Agencias') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
 navegador --}}
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">TRANSPORTES</h3>
+        <h3 class="card-title">AGENCIAS</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -23,35 +23,23 @@ navegador --}}
 
         <div>
             <div class="text-center fs-2">
-                Crear Transporte
+                Crear Agencia
             </div>
-            <form class="container" method="post" action="{{route('transportes.store')}}">
+            <form class="container" method="post" action="{{route('agencias.store')}}">
                 @csrf
                 @method('post')
 
                 <div class="row">
-                    <label for="">Año</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Año" placeholder="Año">
+                    <label for="">Ciudad</label>
+                    <input class="border p-3 rounded ml-6" type="text" name="Ciudad" placeholder="Ciudad">
                 </div>
                 <div class="row mt-4">
-                    <label for="">Descripcion</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Descripcion" placeholder="Descripcion">
-                </div>
-                <div class="row mt-4">
-                    <label for="">Marca</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Marca" placeholder="Marca">
-                </div>
-                <div class="row mt-4">
-                    <label for="">Modelo</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Modelo" placeholder="Modelo">
-                </div>
-                <div class="row mt-4">
-                    <label for="">Estado</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Estado" placeholder="Estado">
+                    <label for="">Direccion</label>
+                    <input class="border p-3 rounded ml-6" type="text" name="Direccion" placeholder="Direccion">
                 </div>
                 <div class="mt-4">
                     <input class="btn btn-success" type="submit" value="Guardar">
-                    <a href="{{route('transportes.index')}}" class="btn btn-danger">Cancelar</a>
+                    <a href="{{route('agencias.index')}}" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>

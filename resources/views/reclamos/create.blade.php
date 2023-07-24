@@ -1,11 +1,11 @@
 @extends('layouts.plantilla')
-@section('title', 'Paquetes') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
+@section('title', 'Reclamos') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
 navegador --}}
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">PAQUETES</h3>
+        <h3 class="card-title">RECLAMOS</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -23,32 +23,41 @@ navegador --}}
 
         <div>
             <div class="text-center fs-2">
-                Crear Paquete
+                Crear Reclamo
             </div>
-            <form class="container" method="post" action="{{route('paquetes.store')}}">
+            <form class="container" method="post" action="{{route('reclamos.store')}}">
                 @csrf
                 @method('post')
 
                 <div class="row">
-                    <label for="">Peso</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Peso" placeholder="Peso">
+                    <label for="">Codigo</label>
+                    <input class="border p-3 rounded ml-6" type="text" name="Codigo" placeholder="Codigo">
                 </div>
                 <div class="row mt-4">
-                    <label for="">Envío ID</label>
-                    <select class="form-control" id="EnvioID" onchange="validarInput()" name="EnvíoID">
-                        <option value="0" selected>- Seleccione Envío -</option>
-                        @foreach($envios as $envio) 
-                            <option value="{{ $envio->EnvíoID }}">{{ $envio->EnvíoID }}</option>
+                    <label for="">Cliente</label>
+                    <select class="form-control" id="idCliente" onchange="validarCliente()" name="ClienteID">
+                        <option value="0" selected>- Seleccione Cliente -</option>
+                        @foreach($clientes as $cliente) 
+                            <option value="{{ $cliente->idcliente }}">{{ $cliente->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="row mt-4">
-                    <label for="">Descripción</label>
+                    <label for="">Descripcion</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Descripcion" placeholder="Descripcion">
+                </div>
+                <div class="row mt-4">
+                    <label for="">Estado</label>
+                    <select class="form-control" id="Estado" onchange="validarCliente()" name="Estado">
+                        <option value="0" selected>- Seleccione Cliente -</option>
+                        <option value="En proceso">En proceso</option>
+                        <option value="Archivado">Archivado</option>
+                        <option value="Atendido">Atendido</option>
+                    </select>
                 </div>
                 <div class="mt-4">
                     <input class="btn btn-success" type="submit" disabled id="submitButton" value="Guardar">
-                    <a href="{{route('paquetes.index')}}" class="btn btn-danger">Cancelar</a>
+                    <a href="{{route('reclamos.index')}}" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>
@@ -65,10 +74,11 @@ navegador --}}
 
 @section('script')
 
-    function validarInput() {
-        var x = document.getElementById('EnvioID');
+    function validarCliente() {
+        var x = document.getElementById('idCliente');
+        var y = document.getElementById('Estado');
         var z = document.getElementById('submitButton');
-        if (x.value == 0) {
+        if (x.value == 0 || y.value == 0) {
             z.disabled = true;
         } else {
             z.disabled = false;

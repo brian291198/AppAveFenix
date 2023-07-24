@@ -300,6 +300,24 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
+              <a href="/agencias" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Agencias</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/comprobantes" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Comprobantes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/envios" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Envios</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="/paquetes" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Paquetes</p>
@@ -312,32 +330,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/tarifas" class="nav-link">
+              <a href="/reclamos" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Tarifas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/transportes" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Transportes</p>
-              </a>
-            </li>
-              <a href="/envios" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Envios</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/comprobantes" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Comprobantes</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/agencias" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Agencias</p>
+                <p>Reclamos</p>
               </a>
             </li>
             <li class="nav-item">
@@ -347,9 +342,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/reclamos" class="nav-link">
+              <a href="/tarifas" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Reclamos</p>
+                <p>Tarifas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/transportes" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Transportes</p>
               </a>
             </li>
           </ul>
@@ -437,6 +438,9 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-@yield('script')
+
+<script>
+  @yield('script')
+</script>
 </body>
 </html>

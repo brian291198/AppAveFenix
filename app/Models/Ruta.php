@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Ruta extends Model
@@ -16,4 +17,11 @@ class Ruta extends Model
     protected $fillable = [
         'Duracionaprox',
     ];
+
+    public function agencia(): BelongsToMany
+    {
+          return $this->belongsToMany(Agencia::class, 'rutadetalle', 'RutaID', 'AgenciaID')->withPivot('Categoria');
+    }
+
+    
 }

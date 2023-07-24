@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class Comprobante extends Model
@@ -15,10 +16,20 @@ class Comprobante extends Model
 
     protected $fillable = [
         'TarifaID',
-        'PromocionID',
+        'PromociónID',
         'Numero',
         'Monto',
         'Fecha',
         'Observaciones',
     ];
+
+    public function tarifa(): BelongsTo 
+    {
+          return $this->belongsTo(Tarifa::class,'TarifaID');
+    }
+
+    public function promocion(): BelongsTo 
+    {
+          return $this->belongsTo(Promocion::class,'PromociónID');
+    }
 }

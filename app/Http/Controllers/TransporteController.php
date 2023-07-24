@@ -9,11 +9,11 @@ class TransporteController extends Controller
 {
     public function index() {
         $transportes = Transporte::all();
-        return view('encomiendas.transportes.index', ['transportes' => $transportes]);
+        return view('transportes.index', ['transportes' => $transportes]);
     }
 
     public function create() {
-        return view('encomiendas.transportes.create');
+        return view('transportes.create');
     }
 
     public function store(Request $request) {
@@ -30,7 +30,7 @@ class TransporteController extends Controller
     }
 
     public function edit(Transporte $transporte) {
-        return view('encomiendas.transportes.edit', ['transporte' => $transporte]);
+        return view('transportes.edit', ['transporte' => $transporte]);
     }
 
     public function update(Transporte $transporte, Request $request) {
@@ -46,7 +46,7 @@ class TransporteController extends Controller
         return redirect(route('transportes.index'))->with('success', 'Transporte actualizado');
     }
 
-    public function delete(Transporte $transporte) {
+    public function destroy(Transporte $transporte) {
         $transporte->delete();
         return redirect(route('transportes.index'))->with('success', 'Transporte eliminado');
     }

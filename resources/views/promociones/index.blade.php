@@ -21,31 +21,32 @@ navegador --}}
         - --}}
         {{-- INICIO DE CONTENIDO --}}
 
-        <div class="space-y-10">
+        <div>
             <div>
-                <a class="bg-[#4D80F6] rounded p-3" href="{{route('promociones.create')}}">Registrar promocion</a>
+                <a class="btn btn-primary" href="{{route('promociones.create')}}">Registrar promocion</a>
             </div>
-            <table class="w-full">
-                <tr>
+            <table class="table mt-4">
+                <tr class="table-dark">
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Codigo</th>
                     <th>Descuento</th>
                     <th>Estado</th>
+                    <th>Opciones</th>
                 </tr>
                 @foreach($promociones as $promocion)
                     <tr>
-                        <td class="border p-2">{{$promocion->PromociónID}}</td>
-                        <td class="border p-2">{{$promocion->Nombre}}</td>
-                        <td class="border p-2">{{$promocion->Codigo}}</td>
-                        <td class="border p-2">{{$promocion->Descuento}}</td>
-                        <td class="border p-2">{{$promocion->Estado}}</td>
-                        <td class="border p-2 space-y-2">
-                            <a class="text-xs bg-[#20fc03] rounded p-1" href="{{route('promociones.edit', ['promocion' => $promocion])}}">Editar</a>
-                            <form method="post" action="{{route('promociones.delete', ['promocion' => $promocion])}}">
+                        <td class="align-middle">{{$promocion->PromociónID}}</td>
+                        <td class="align-middle">{{$promocion->Nombre}}</td>
+                        <td class="align-middle">{{$promocion->Codigo}}</td>
+                        <td class="align-middle">{{$promocion->Descuento}}</td>
+                        <td class="align-middle">{{$promocion->Estado}}</td>
+                        <td class="d-flex">
+                            <a class="btn btn-primary mr-2" href="{{route('promociones.edit', ['promocione' => $promocion])}}">Editar</a>
+                            <form method="post" action="{{route('promociones.destroy', ['promocione' => $promocion])}}">
                                 @csrf
                                 @method('delete')
-                                <input class="text-xs bg-[#fc0703] rounded p-1" type="submit" value="Eliminar">
+                                <input class="btn btn-danger" type="submit" value="Eliminar">
                             </form>
                         </td>
                     </tr>

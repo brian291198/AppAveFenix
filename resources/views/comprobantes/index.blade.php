@@ -1,11 +1,11 @@
 @extends('layouts.plantilla')
-@section('title', 'Paquetes') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
+@section('title', 'Comprobantes') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
 navegador --}}
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">PAQUETES</h3>
+        <h3 class="card-title">COMPROBANTES</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -23,29 +23,39 @@ navegador --}}
 
         <div>
             <div>
-                <a class="btn btn-primary" href="{{route('paquetes.create')}}">Registrar paquete</a>
+                <a class="btn btn-primary" href="{{route('comprobantes.create')}}">Registrar comprobante</a>
             </div>
             <table class="table mt-4">
                 <tr class="table-dark">
                     <th>ID</th>
-                    <th>Envío ID</th>
-                    <th>Peso</th>
-                    <th>Descripción</th>
+                    <th>Numero</th>
+                    <th>Monto</th>
+                    <th>Tarifa</th>
+                    <th>Promocion</th>
+                    <th>Fecha</th>
+                    <th>Observaciones</th>
                     <th>Opciones</th>
                 </tr>
-                @foreach($paquetes as $paquete)
+                @foreach($comprobantes as $comprobante)
                     <tr>
-                        <td class="align-middle">{{$paquete->PaqueteID}}</td>
-                        @foreach ($envios as $envio)
-                            @if ($envio->EnvíoID == $paquete->EnvíoID)
-                                <td class="align-middle">{{$envio->EnvíoID}}</td>
+                        <td class="align-middle">{{$comprobante->ComprobanteID}}</td>
+                        <td class="align-middle">{{$comprobante->Numero}}</td>
+                        <td class="align-middle">{{$comprobante->Monto}}</td>
+                        @foreach ($tarifas as $tarifa)
+                            @if ($tarifa->TarifaID == $comprobante->TarifaID)
+                                <td class="align-middle">{{$tarifa->Descripcion}}</td>
                             @endif
                         @endforeach
-                        <td class="align-middle">{{$paquete->Peso}}</td>
-                        <td class="align-middle">{{$paquete->Descripcion}}</td>
+                        @foreach ($promociones as $promocion)
+                            @if ($promocion->PromocionID == $comprobante->PromocionID)
+                                <td class="align-middle">{{$promocion->Nombre}}</td>
+                            @endif
+                        @endforeach
+                        <td class="align-middle">{{$comprobante->Fecha}}</td>
+                        <td class="align-middle">{{$comprobante->Observaciones}}</td>
                         <td class="d-flex">
-                            <a class="btn btn-primary mr-2" href="{{route('paquetes.edit', ['paquete' => $paquete])}}">Editar</a>
-                            <form method="post" action="{{route('paquetes.destroy', ['paquete' => $paquete])}}">
+                            <a class="btn btn-primary mr-2" href="{{route('comprobantes.edit', ['comprobante' => $comprobante])}}">Editar</a>
+                            <form method="post" action="{{route('comprobantes.destroy', ['comprobante' => $comprobante])}}">
                                 @csrf
                                 @method('delete')
                                 <input class="btn btn-danger" type="submit" value="Eliminar">

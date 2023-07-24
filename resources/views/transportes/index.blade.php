@@ -23,31 +23,32 @@ navegador --}}
 
         <div class="space-y-10">
             <div>
-                <a class="bg-[#4D80F6] rounded p-3" href="{{route('transportes.create')}}">Registrar transporte</a>
+                <a class="btn btn-primary" href="{{route('transportes.create')}}">Registrar transporte</a>
             </div>
-            <table class="w-full">
-                <tr>
+            <table class="table mt-4">
+                <tr class="table-dark">
                     <th>ID</th>
                     <th>Modelo</th>
                     <th>Marca</th>
                     <th>Año</th>
                     <th>Descripcion</th>
                     <th>Estado</th>
+                    <th>Opciones</th>
                 </tr>
                 @foreach($transportes as $transporte)
                     <tr>
-                        <td class="border p-2">{{$transporte->TransporteID}}</td>
-                        <td class="border p-2">{{$transporte->Modelo}}</td>
-                        <td class="border p-2">{{$transporte->Marca}}</td>
-                        <td class="border p-2">{{$transporte->Año}}</td>
-                        <td class="border p-2">{{$transporte->Descripcion}}</td>
-                        <td class="border p-2">{{$transporte->Estado}}</td>
-                        <td class="border p-2 space-y-2">
-                            <a class="text-xs bg-[#20fc03] rounded p-1" href="{{route('transportes.edit', ['transporte' => $transporte])}}">Editar</a>
-                            <form method="post" action="{{route('transportes.delete', ['transporte' => $transporte])}}">
+                        <td class="align-middle">{{$transporte->TransporteID}}</td>
+                        <td class="align-middle">{{$transporte->Modelo}}</td>
+                        <td class="align-middle">{{$transporte->Marca}}</td>
+                        <td class="align-middle">{{$transporte->Año}}</td>
+                        <td class="align-middle">{{$transporte->Descripcion}}</td>
+                        <td class="align-middle">{{$transporte->Estado}}</td>
+                        <td class="d-flex">
+                            <a class="btn btn-primary mr-2" href="{{route('transportes.edit', ['transporte' => $transporte])}}">Editar</a>
+                            <form method="post" action="{{route('transportes.destroy', ['transporte' => $transporte])}}">
                                 @csrf
                                 @method('delete')
-                                <input class="text-xs bg-[#fc0703] rounded p-1" type="submit" value="Eliminar">
+                                <input class="btn btn-danger" type="submit" value="Eliminar">
                             </form>
                         </td>
                     </tr>

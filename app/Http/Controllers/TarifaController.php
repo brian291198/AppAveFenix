@@ -9,11 +9,11 @@ class TarifaController extends Controller
 {
     public function index() {
         $tarifas = Tarifa::all();
-        return view('encomiendas.tarifas.index', ['tarifas' => $tarifas]);
+        return view('tarifas.index', ['tarifas' => $tarifas]);
     }
 
     public function create() {
-        return view('encomiendas.tarifas.create');
+        return view('tarifas.create');
     }
 
     public function store(Request $request) {
@@ -23,12 +23,12 @@ class TarifaController extends Controller
             'Estado' => 'required|max:10',
         ]);
 
-        $newTransporte = Tarifa::create($data);
+        $newTarifa = Tarifa::create($data);
         return redirect(route('tarifas.index'));
     }
 
     public function edit(Tarifa $tarifa) {
-        return view('encomiendas.tarifas.edit', ['tarifa' => $tarifa]);
+        return view('tarifas.edit', ['tarifa' => $tarifa]);
     }
 
     public function update(Tarifa $tarifa, Request $request) {
@@ -42,7 +42,7 @@ class TarifaController extends Controller
         return redirect(route('tarifas.index'))->with('success', 'Tarifa actualizada');
     }
 
-    public function delete(Tarifa $tarifa) {
+    public function destroy(Tarifa $tarifa) {
         $tarifa->delete();
         return redirect(route('tarifas.index'))->with('success', 'Tarifa eliminada');
     }

@@ -1,11 +1,11 @@
 @extends('layouts.plantilla')
-@section('title', 'Promociones') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
+@section('title', 'Agencias') {{-- Edita "Ejemplo" por el nombre que corresponda, esto aparece en la pestaña del
 navegador --}}
 
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">PROMOCIONES</h3>
+        <h3 class="card-title">AGENCIAS</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -23,31 +23,23 @@ navegador --}}
 
         <div>
             <div class="text-center fs-2">
-                Crear Promocion
+                Editar Agencia
             </div>
-            <form class="container" method="post" action="{{route('promociones.store')}}">
+            <form class="space-y-4" method="post" action="{{route('agencias.update', ['agencia' => $agencia])}}">
                 @csrf
-                @method('post')
+                @method('put')
 
                 <div class="row">
-                    <label for="">Nombre</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Nombre" placeholder="Nombre">
+                    <label for="">Ciudad</label>
+                    <input class="border p-3 rounded ml-6" type="text" name="Ciudad" placeholder="Ciudad" value="{{$agencia->Ciudad}}">
                 </div>
                 <div class="row mt-4">
-                    <label for="">Codigo</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Codigo" placeholder="Codigo">
-                </div>
-                <div class="row mt-4">
-                    <label for="">Descuento</label>
-                    <input class="border p-3 rounded ml-6" type="number" name="Descuento" placeholder="Descuento">
-                </div>
-                <div class="row mt-4">
-                    <label for="">Estado</label>
-                    <input class="border p-3 rounded ml-6" type="text" name="Estado" placeholder="Estado">
+                    <label for="">Direccion</label>
+                    <input class="border p-3 rounded ml-6" type="text" name="Direccion" placeholder="Direccion" value="{{$agencia->Direccion}}">
                 </div>
                 <div class="mt-4">
-                    <input class="btn btn-success" type="submit" value="Guardar">
-                    <a href="{{route('promociones.index')}}" class="btn btn-danger">Cancelar</a>
+                    <input class="btn btn-success" type="submit" value="Update">
+                    <a href="{{route('agencias.index')}}" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>

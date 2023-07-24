@@ -138,15 +138,15 @@ Route::resource('ventas', VentaController::class)->names('ventas');
 
 
 /* INICIO RUTAS ENCOMIENDA */
-Route::resource('tarifas', TarifaController::class)->names('tarifas');
-Route::resource('promociones', PromocionController::class)->names('promociones');
-Route::resource('transportes', TransporteController::class)->names('transportes');
 Route::resource('agencias', AgenciaController::class)->names('agencias');
 Route::resource('comprobantes', ComprobanteController::class)->names('comprobantes');
 Route::resource('envios', EnvioController::class)->names('envios');
 Route::resource('paquetes', PaqueteController::class)->names('paquetes');
+Route::resource('promociones', PromocionController::class)->names('promociones');
 Route::resource('reclamos', ReclamoController::class)->names('reclamos');
 Route::resource('rutas', RutaController::class)->names('rutas');
+Route::resource('tarifas', TarifaController::class)->names('tarifas');
+Route::resource('transportes', TransporteController::class)->names('transportes');
 /* FIN RUTAS ENCOMIENDA */
 
 

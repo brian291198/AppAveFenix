@@ -9,11 +9,11 @@ class PromocionController extends Controller
 {
     public function index() {
         $promociones = Promocion::all();
-        return view('encomiendas.promociones.index', ['promociones' => $promociones]);
+        return view('promociones.index', ['promociones' => $promociones]);
     }
 
     public function create() {
-        return view('encomiendas.promociones.create');
+        return view('promociones.create');
     }
 
     public function store(Request $request) {
@@ -24,12 +24,12 @@ class PromocionController extends Controller
             'Estado' => 'required|max:10',
         ]);
 
-        $newTransporte = Promocion::create($data);
+        $newPromocion = Promocion::create($data);
         return redirect(route('promociones.index'));
     }
 
     public function edit(Promocion $promocion) {
-        return view('encomiendas.promociones.edit', ['promocion' => $promocion]);
+        return view('promociones.edit', ['promocion' => $promocion]);
     }
 
     public function update(Promocion $promocion, Request $request) {
@@ -44,7 +44,7 @@ class PromocionController extends Controller
         return redirect(route('promociones.index'))->with('success', 'Promocion actualizada');
     }
 
-    public function delete(Promocion $promocion) {
+    public function destroy(Promocion $promocion) {
         $promocion->delete();
         return redirect(route('promociones.index'))->with('success', 'Promocion eliminada');
     }

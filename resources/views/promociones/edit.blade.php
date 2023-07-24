@@ -21,34 +21,33 @@ navegador --}}
         - --}}
         {{-- INICIO DE CONTENIDO --}}
 
-        <div class="space-y-10">
-            <div class="text-center text-3xl">
+        <div>
+            <div class="text-center fs-2">
                 Editar Promocion
             </div>
             <form class="space-y-4" method="post" action="{{route('promociones.update', ['promocion' => $promocion])}}">
                 @csrf
                 @method('put')
         
-
-                <div>
+                <div class="row">
                     <label for="">Nombre</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Nombre" placeholder="Nombre" value="{{$promocion->Nombre}}">
                 </div>
-                <div>
+                <div class="row mt-4">
                     <label for="">Codigo</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Codigo" placeholder="Codigo" value="{{$promocion->Codigo}}">
                 </div>
-                <div>
+                <div class="row mt-4">
                     <label for="">Descuento</label>
                     <input class="border p-3 rounded ml-6" type="number" name="Descuento" placeholder="Descuento" value="{{$promocion->Descuento}}">
                 </div>
-                <div>
+                <div class="row mt-4">
                     <label for="">Estado</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Estado" placeholder="Estado" value="{{$promocion->Estado}}">
                 </div>
-                <div class="space-x-4">
-                    <input class="bg-[#4D80F6] rounded p-3" type="submit" value="Update">
-                    <a href="{{route('promociones.index')}}" class="bg-[#b52321] rounded p-3">Cancelar</a>
+                <div class="mt-4">
+                    <input class="btn btn-success" type="submit" value="Update">
+                    <a href="{{route('promociones.index')}}" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>

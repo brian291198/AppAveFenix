@@ -21,38 +21,37 @@ navegador --}}
         - --}}
         {{-- INICIO DE CONTENIDO --}}
 
-        <div class="space-y-10">
-            <div class="text-center text-3xl">
+        <div>
+            <div class="text-center fs-2">
                 Editar Transporte
             </div>
             <form class="space-y-4" method="post" action="{{route('transportes.update', ['transporte' => $transporte])}}">
                 @csrf
                 @method('put')
-        
 
-                <div>
+                <div class="row">
                     <label for="">Año</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Año" placeholder="Año" value="{{$transporte->Año}}">
                 </div>
-                <div>
+                <div class="row mt-4">
                     <label for="">Descripcion</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Descripcion" placeholder="Descripcion" value="{{$transporte->Descripcion}}">
                 </div>
-                <div>
+                <div class="row mt-4">
                     <label for="">Marca</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Marca" placeholder="Marca" value="{{$transporte->Marca}}">
                 </div>
-                <div>
+                <div class="row mt-4">
                     <label for="">Modelo</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Modelo" placeholder="Modelo" value="{{$transporte->Modelo}}">
                 </div>
-                <div>
+                <div class="row mt-4">
                     <label for="">Estado</label>
                     <input class="border p-3 rounded ml-6" type="text" name="Estado" placeholder="Estado" value="{{$transporte->Estado}}">
                 </div>
-                <div class="space-x-4">
-                    <input class="bg-[#4D80F6] rounded p-3" type="submit" value="Update">
-                    <a href="{{route('transportes.index')}}" class="bg-[#b52321] rounded p-3">Cancelar</a>
+                <div class="mt-4">
+                    <input class="btn btn-success" type="submit" value="Update">
+                    <a href="{{route('transportes.index')}}" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>
