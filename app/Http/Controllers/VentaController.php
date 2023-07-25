@@ -25,6 +25,7 @@ class VentaController extends Controller
         ->join('detalleventa as d', 'v.idventas', '=', 'd.idventas')
         ->join('itinerario as i', 'd.iditinerario', '=', 'i.iditinerario')
         ->select('v.idventas','c.nombre','v.idestado','v.idformapago','i.Nomciudad','v.fecha')
+        ->orderBy('v.idventas', 'asc')
         ->where('c.nombre','LIKE','%'.$buscarpor.'%')
         ->paginate($this::PAGINATION);
 
