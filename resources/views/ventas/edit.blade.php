@@ -110,6 +110,7 @@
         </div>
         <div class="text-center mb-5">
             <input class="btn btn-primary" id="idagregar" type="submit" value="Guardar">
+            <a class="btn btn-secondary" href="{{route('ventas.index')}}">Volver</a>
         </div>
     </form>
     

@@ -31,6 +31,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Forma de pago</th>
+                <th scope="col">Ciudad Destino</th>
                 <th scope="col">Fecha</th>
                 
                 <th colspan="2" class="text-center">Accion</th>
@@ -39,7 +40,7 @@
             <tbody>
                 @if (count($ventas)<=0)
                     <tr>
-                    <td class="text-center" colspan="6">No hay Registros...</td>
+                    <td class="text-center" colspan="7">No hay Registros...</td>
                     </tr>
                 @else
                     @foreach ($ventas as $ve)
@@ -48,7 +49,7 @@
                             <td>{{$ve->nombre}}</td>
 
                             <td>@if ($ve->idestado == 1)
-                                <button class="btn btn-primary btn-sm" disabled>Reserva</button>
+                                <button class="btn btn-info btn-sm" disabled>Reserva</button>
                             @elseif ($ve->idestado == 2)
                                 <button class="btn btn-success btn-sm" disabled>Pagado</button>
                             @elseif ($ve->idestado == 3)
@@ -64,6 +65,7 @@
                             @elseif ($ve->idformapago == 4)
                                 Transferencia
                             @endif</td>
+                            <td>{{$ve->Nomciudad}}</td>
                             <td>{{$ve->fecha}}</td>
                         
                             <td class="text-center">
