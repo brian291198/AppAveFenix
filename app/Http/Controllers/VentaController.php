@@ -8,6 +8,7 @@ use App\Models\Estado;
 use App\Models\DetalleVenta;
 use App\Models\Ventas;
 use App\Models\Itinerario;
+use App\Models\Formapago;
 use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
@@ -15,18 +16,20 @@ class VentaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    const PAGINATION=10;
-    public function index()
+    const PAGINATION=7;
+    public function index(Request $request)
     {
-        //
-        // $ventas = Ventas::join('clientes', 'ventas.idcliente', '=', 'clientes.idcliente')
-        // ->select('ventas.idventas', 'clientes.nombre', 'ventas.fecha')
-        // ->get();
+        $buscarpor=trim($request->get('buscarpor'));
+        $ventas=DB::table('ventas as v')
+        ->join('clientes as c','v.idcliente','=','c.idcliente')
+        ->join('detalleventa as d', 'v.idventas', '=', 'd.idventas')
+        ->join('itinerario as i', 'd.iditinerario', '=', 'i.iditinerario')
+        ->select('v.idventas','c.nombre','v.idestado','v.idformapago','i.Nomciudad','v.fecha')
+        ->orderBy('v.idventas', 'asc')
+        ->where('c.nombre','LIKE','%'.$buscarpor.'%')
+        ->paginate($this::PAGINATION);
 
-        //return view('ventas.lista', ['ventas' => $ventas]);
-
-        $ventas=DB::table('ventas as v')->join('clientes as c','v.idcliente','=','c.idcliente')->select('v.idventas','c.nombre','v.idestado','v.fecha')->paginate($this::PAGINATION);
-
+        //return $ventas;
         return view('ventas.lista', compact('ventas')); // Pasar 'ventas' en lugar de 'ventas.lista'
     }
 
@@ -38,10 +41,11 @@ class VentaController extends Controller
         
         $cliente = Cliente::all();
         $estado = Estado::all();
+        $formapago = Formapago::all();
         $itinerarios = Itinerario::all();
 
-        //return $itinerario;
-        return view('ventas.create', compact('cliente', 'itinerarios','estado'));
+        //return $formapago;
+        return view('ventas.create', compact('cliente', 'itinerarios','estado','formapago'));
         //return view('ventas.create', ['opciones' => $opciones],compact('cliente','ciudades','itinerario'));
 
     }
@@ -52,28 +56,45 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
+
+        try{
+            DB::beginTransaction();
+
             $ventas=new Ventas();
             $ventas->idcliente=$request->idcliente;
             $ventas->idestado=$request->idestado;
+            $ventas->idformapago=$request->idformapago;
             $ventas->fecha=now();
-            $ventas->fechaIda = $request->fechaIda_hidden;
-            $ventas->fechaRetorno = $request->fechaRetorno_hidden;
+            $ventas->fechaIda = $request->fechaIda;
+            $ventas->fechaRetorno = $request->fechaRetorno;
             $ventas->save();
             $itinerarios=$request->iditinerarios;
             $i=0;
-            foreach($itinerarios as $it){
-                $detalle=new DetalleVenta();
-                $detalle->idventas=$ventas->idventas;
-                $detalle->iditinerario=$it[0];
-                $detalle->cantidad=$request->cantidad[$i];
+            $itinerarios = $request->iditinerarios;
+            $cantidades = $request->cantidad;
+
+            for ($i = 0; $i < count($itinerarios); $i++) {
+                $itinerario_data = explode('_', $itinerarios[$i]);
+                $detalle = new DetalleVenta();
+                $detalle->idventas = $ventas->idventas;
+                $detalle->iditinerario = $itinerario_data[0];
+                $detalle->cantidad = $cantidades[$i];
                 $detalle->save();
 
-                $itinerario=Itinerario::find($it[0]);
-                $itinerario->asientos=$itinerario->asientos-$request->cantidad[$i];
+                $itinerario = Itinerario::find($itinerario_data[0]);
+                $itinerario->asientos = $itinerario->asientos - $cantidades[$i];
                 $itinerario->save();
-
-                $i++;
             }
+
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {
+            dd($e);
+            DB::rollback();
+        }
+
+            
 
         //return $detalle;
         return redirect()->route('ventas.index')->with('datos','La venta se ha creado correctamente');
@@ -88,25 +109,37 @@ class VentaController extends Controller
         //
         $ventas=Ventas::find($id);
         $clientes=DB::table('clientes')->where('idcliente','=',$ventas->idcliente)->get();
+        $formapago=DB::table('formapago')->where('idformapago','=',$ventas->idformapago)->get();
         $estado=DB::table('estado')->where('idestado','=',$ventas->idestado)->get();
-        $itinerario=DB::table('detalleventa as d')->join('itinerario as i','d.iditinerario','=','i.iditinerario')->where('d.idventas','=',$ventas->idventas)->select('d.cantidad','i.Nomciudad','i.PrecioCiud','i.NomServicio','i.PrecioServ','i.horaida','i.horallegada')->get();
-        return view('ventas.show',compact('ventas','clientes','estado','itinerario'));
+        $itinerario=DB::table('detalleventa as d')->join('itinerario as i','d.iditinerario','=','i.iditinerario')->where('d.idventas','=',$ventas->idventas)->select('d.iditinerario','i.asientos','d.cantidad','i.Nomciudad','i.PrecioCiud','i.NomServicio','i.PrecioServ','i.horaida','i.horallegada')->get();
+        //return $formapago;
+        return view('ventas.show',compact('ventas','clientes','estado','itinerario','formapago'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Ventas $venta)
     {
         //
+        $clientes=DB::table('clientes')->where('idcliente','=',$venta->idcliente)->get();
+        $estado=Estado::all();
+        $formapago=DB::table('formapago')->where('idformapago','=',$venta->idformapago)->get();
+        $itinerario=DB::table('detalleventa as d')->join('itinerario as i','d.iditinerario','=','i.iditinerario')->where('d.idventas','=',$venta->idventas)->select('d.iditinerario','i.asientos','d.cantidad','i.Nomciudad','i.PrecioCiud','i.NomServicio','i.PrecioServ','i.horaida','i.horallegada')->get();
+        //return $clientes;
+        return view('ventas.edit',compact('venta','clientes','estado','itinerario','formapago'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Ventas $venta)
     {
         //
+        $venta->idestado=$request->idestado;
+        $venta->save();
+        //return $venta;
+        return redirect()->route('ventas.index')->with('datos','Se ha Actualizado los datos de cliente exitosamente');
     }
 
     /**

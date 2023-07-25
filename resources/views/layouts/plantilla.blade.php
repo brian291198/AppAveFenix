@@ -250,6 +250,35 @@
           </li>
         {{-- FIN SUBSISTEMA CONTABILIDAD --}}
 
+        {{-- INICIO SUBSISTEMA VENTAS --}}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-signal"></i>
+            <p>
+              Ventas
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('cliente.index')}}" class="nav-link fas fa-user">
+                <i class="nav-icon"></i>
+                <p>Clientes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('ventas.index')}}" class="nav-link fas fa-credit-card">
+                <i class="nav-icon"></i>
+                <p>ListaVentas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('graficos.index')}}" class="nav-link">
+                <i class="far fa-chart-bar nav-icon"></i>
+                <p>Reporte</p>
+              </a>
+          </ul>
+        </li>
 
 
           
@@ -420,30 +449,7 @@
 
 
 
-        {{-- INICIO SUBSISTEMA VENTAS --}}
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-signal"></i>
-            <p>
-              Ventas
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{route('cliente.index')}}" class="nav-link fas fa-user">
-                <i class="nav-icon"></i>
-                <p>Clientes</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('ventas.index')}}" class="nav-link fas fa-credit-card">
-                <i class="nav-icon"></i>
-                <p>ListaVentas</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+        
         {{-- FIN SUBSISTEMA VENTAS --}}
           
           
