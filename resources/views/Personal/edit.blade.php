@@ -14,60 +14,59 @@
 {{-- CONTENIDO --}}
 
 <div class="title-ar">
-    <h1>Editar Registro de Personal</h1>
+    <h1>Editar Registro de Personal - {{ $personal->idpersonal }}</h1>
 </div>
  <div class="title-center">
  
- <form method="POST" action="{{ route("Personal.update",$personal->id_personal)}}">
+ <form method="POST" action="{{ route("Personal.update",$personal->id_personal)}}" class="row g-3">
 @method('put') 
  @csrf
 
 
 
 
-        <div class="form-group">
-        <label for="">Código</label>
-        <input style="margin-left: 55px" type="text" class="formcontrol" id="id" name="id" value="{{ $personal->idpersonal }}" disabled>
+        <div class="col-md-12">
+        <input style="margin-left: 55px; display:none;" type="text" class="form-control" id="id" name="id" value="{{ $personal->idpersonal }}" disabled>
         </div>
 
 
 
-        <div class="form-group" >
-            <label for="">DNI: </label>
+        <div class="col-md-2" >
+            <label for="" style="color: steelblue;">DNI: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="dni" id="dni" value="{{ $personal->dni }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="dni" id="dni" value="{{ $personal->dni }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Nombre: </label>
+        <div class="col-md-5" >
+            <label for="" style="color: steelblue;">Nombre: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="nombre" id="nombre" value="{{ $personal->nombre }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="nombre" id="nombre" value="{{ $personal->nombre }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Apellidos: </label>
+        <div class="col-md-5" >
+            <label for="" style="color: steelblue;">Apellidos: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="apellidos" id="apellidos" value="{{ $personal->apellidos }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="apellidos" id="apellidos" value="{{ $personal->apellidos }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
 
         
-        <div class="form-group" >
-            <label for="">Edad: </label>
+        <div class="col-md-2" >
+            <label for="" style="color: steelblue;">Edad: </label>
             <div class="input-group" >
-            <input  style="padding:5px 0px;width:200px" type="number" class="formcontrol" name="edad" id="edad" value="{{ $personal->edad }}"{{-- readonly="readonly" --}}>
+            <input  style="padding:5px 0px;width:200px" type="number" class="form-control" name="edad" id="edad" value="{{ $personal->edad }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
 
 
-        <div class="form-group" >
-            <label for="">Género: </label>
+        <div class="col-md-3" >
+            <label for="" style="color: steelblue;">Género: </label>
             <br>
-            <select class="formcontrol" style="padding:10px 0px;width:200px" name="genero" id="genero" value="{{ $personal->genero }}"> 
+            <select class="form-control" style="padding:10px 0px;width:200px" name="genero" id="genero" value="{{ $personal->genero }}"> 
                 <option value="{{ $personal->genero }}" selected>{{ $personal->genero }}</option>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
@@ -76,10 +75,10 @@
         </div>
 
 
-        <div class="form-group" >
-            <label for="">Estado Civil: </label>
+        <div class="col-md-3" >
+            <label for="" style="color: steelblue;">Estado Civil: </label>
             <br>
-            <select class="formcontrol" style="padding:10px 0px;width:200px" name="estado_civil" id="estado_civil" > 
+            <select class="form-control" style="padding:10px 0px;width:200px" name="estado_civil" id="estado_civil" > 
                 <option value="{{ $personal->estado_civil }}"selected>{{ $personal->estado_civil }}</option>
                 <option value="C">Casado</option>
                 <option value="D">Divorciado</option>
@@ -91,59 +90,63 @@
 
 
     
-
-        <div class="form-group" >
-            <label for="">Dirección: </label>
+        <div class="col-md-3" >
+            <label for="" style="color: steelblue;">Teléfono: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="direccion" id="direccion" value="{{ $personal->direccion }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="telefono" id="telefono" value="{{ $personal->telefono }}"{{-- readonly="readonly" --}}>
+            </div>
+        </div>
+
+        <div class="col-md-8" >
+            <label for="" style="color: steelblue;">Dirección: </label>
+            <div class="input-group" >
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="direccion" id="direccion" value="{{ $personal->direccion }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
 
-        <div class="form-group" >
-            <label for="">Teléfono: </label>
+
+        <div class="col-md-3" >
+            <label for="" style="color: steelblue;">Email: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="telefono" id="telefono" value="{{ $personal->telefono }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="email" id="email" value="{{ $personal->email }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Email: </label>
+        <div class="col-md-3" >
+            <label for="" style="color: steelblue;">Fecha de Nacimiento: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="email" id="email" value="{{ $personal->email }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="date" class="form-control" name="fecha_nac" id="fecha_nac" value="{{ $personal->fecha_nac }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Fecha de Nacimiento: </label>
+        <div class="col-md-4" >
+            <label for="" style="color: steelblue;">Número de licencia: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="date" class="formcontrol" name="fecha_nac" id="fecha_nac" value="{{ $personal->fecha_nac }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="num_licencia" id="num_licencia" value="{{ $personal->num_licencia }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Número de licencia: </label>
+        <div class="col-md-4" >
+            <label for="" style="color: steelblue;">Tipo de licencia: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="num_licencia" id="num_licencia" value="{{ $personal->num_licencia }}"{{-- readonly="readonly" --}}>
-            </div>
-        </div>
-
-        <div class="form-group" >
-            <label for="">Tipo de licencia: </label>
-            <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="tip_licencia" id="tip_licencia" value="{{ $personal->tip_licencia }}"{{-- readonly="readonly" --}}>
+            <input  style="padding-bottom:10px;width:200px" type="text" class="form-control" name="tip_licencia" id="tip_licencia" value="{{ $personal->tip_licencia }}"{{-- readonly="readonly" --}}>
             </div>
         </div>
 
 
-           
+        <div class="col-md-3" >
+            <button style="margin-left: 60px;margin-top: 20px"  type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
+        </div>
+
+        <div class="col-md-3" >
+            <a style="margin-top: 20px"  href="{{ route('cancelarp')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
+        </div>
 
 
 <!-- {{-- <button style="margin-left: 300px;margin-top:40px;margin-right:10px"type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
 <a style="margin-top:40px" href="{{ route('cancelare')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
  --}} -->
-<button style="margin-left: 60px;margin-top: 20px"  type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
-<a style="margin-top: 20px"  href="{{ route('cancelarp')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
 </form>
 </div>
 
