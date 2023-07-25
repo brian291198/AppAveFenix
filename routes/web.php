@@ -4,8 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\InicioController;
+
+// CONTROLADORES DE VENTA
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\GraficoController;
+
 
 /* CONTROLADORES DE MANTENIMIENTO */
 use App\Http\Controllers\HerramientaController;
@@ -126,6 +130,8 @@ Route::get('/ejemplo', function () {
 Route::resource('clientes', ClienteController::class)->names('cliente');
 
 Route::resource('ventas', VentaController::class)->names('ventas');
+
+Route::get('graficos', [GraficoController::class, 'index'])->name('graficos.index');
 /* FIN RUTAS VENTAS */
 
 

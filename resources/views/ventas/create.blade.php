@@ -25,23 +25,33 @@
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="a" class="form-label">Fecha de Ida:</label>
                 <input type="text" id="fechaIda" class="form-control" name="fechaIda" value="" placeholder="Seleccione una fecha">
-                <input type="hidden" id="fechaIdaHidden" name="fechaIda_hidden">
             </div>
     
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="a" class="form-label">Fecha de Retorno:</label>
                 <input type="text" id="fechaRetorno" class="form-control" disabled="true" name="fechaRetorno" value="" placeholder="Seleccione una fecha">
-                <input type="hidden" id="fechaRetornoHidden" name="fechaRetorno_hidden" >
             </div>
 
             <div class="mb-3 col-sm-12 col-md-2">
                 <label for="idestado" class="form-label">Estado: </label>
                 <select name="idestado" id="idestado" class="form-control">
                     @foreach ($estado as $e)
+                        @if ($e->idestado == 1 || $e->idestado == 2)
                         <option value="{{$e->idestado}}">{{$e->NomEstado}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
+
+            <div class="mb-3 col-sm-12 col-md-2">
+                <label for="idformapago" class="form-label">Forma de Pago: </label>
+                <select name="idformapago" id="idformapago" class="form-control">
+                    @foreach ($formapago as $fo)
+                        <option value="{{$fo->idformapago}}">{{$fo->NombrePago}}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <div class="mb-3 col-sm-12 col-md-4">
                 <label for="iditinerario" class="form-label">Ciudad-Servicio: </label>
@@ -113,20 +123,21 @@
         
         onChange: function(selectedDates, dateStr) {
         // Obtener la fecha actual
-        var fechaActual = new Date().toISOString().split('T')[0];
+            var fechaActual = new Date().toISOString().split('T')[0];
         
-        if (dateStr < fechaActual) {
-            //Mensaje de error, permanece desahbilitado FechaRetorno
-            alert("Elegir fecha válida");
-            fechaInputIda._input.value = ""; // Limpiar el valor del campo Fecha de Ida
-        } else {
-            // Cuando se selecciona una fecha de ida válida, la almacenamos en el campo oculto
-            document.getElementById("fechaIdaHidden").value = dateStr;
-            // Habilitar Fecha de Retorno y establecer la fecha mínima
-            fechaInputRetorno.disabled = false;
-            fechaInputRetorno._input.setAttribute("min", dateStr); // Establecer la fecha mínima para Fecha de Retorno
+            if (dateStr < fechaActual ) {
+                //Mensaje de error, permanece desahbilitado FechaRetorno
+                alert("Elegir fecha válida");
+                document.getElementById('fechaIda').value = ""; // Limpiar el valor del campo Fecha de Ida
+            } else {
+                    // Cuando se selecciona una fecha de ida válida, la almacenamos en el campo oculto
+                    document.getElementById("fechaIda").value = dateStr;
+                    // Habilitar Fecha de Retorno y establecer la fecha mínima
+                    fechaInputRetorno.disabled = false;
+                
+            }
+            validarFechas();
         }
-    }
     });
 
 
@@ -135,10 +146,29 @@
         enableTime: false,
         dateFormat: "Y-m-d",
         onChange: function(selectedDates, dateStr) {
-                // Cuando se selecciona una fecha de ida, la almacenamos en el campo oculto
-                document.getElementById("fechaRetornoHidden").value = dateStr;
+
+            if (dateStr <=  document.getElementById('fechaIda').value) {
+                alert("Elegir fecha válida");
+                document.getElementById('fechaRetorno').value = "";
+            }else{
+                document.getElementById("fechaRetorno").value = dateStr;
             }
+                // Cuando se selecciona una fecha de ida, la almacenamos en el campo oculto
+            validarFechas();    
+        }
     });
+
+    function validarFechas() {
+        var fechaIda = new Date(document.getElementById('fechaIda').value);
+        var fechaRetorno = new Date(document.getElementById('fechaRetorno').value);
+
+        if (fechaIda >= fechaRetorno) {
+            document.getElementById('fechaIda').value = "";
+            document.getElementById('fechaRetorno').value = "";
+            fechaInputRetorno.disabled = true;
+        }
+    }
+
 
 </script> 
 
@@ -180,13 +210,19 @@
 
                 /* alert('vector'+vector);	 */	
                 indice++;
-                i++;		
+                i++;
+                 
 		    }
         }else{
             alert('Debe ingresar una cantidad mayor a 0')
+            cancelarAgregar();// Llamamos a la función cancelarAgregar cuando se cancela el ingreso de cantidad
         }
 		
 	}
+
+    function cancelarAgregar() {
+        $('#iditinerario').prop('disabled', false); // Habilitamos el select option nuevamente
+    }
 
     function actualizarValores() {
         document.getElementById('sub-total').innerHTML = parseFloat(sub_total).toFixed(2);
@@ -223,6 +259,8 @@
         if (indice == 0) {
             document.getElementById('idagregar').disabled = true;
             $('#iditinerario').prop('disabled', false);
+        } else {
+            cancelarAgregar(); // Llamamos a la función cancelarAgregar cuando se quita un elemento de la tabla
         }
     }
 
