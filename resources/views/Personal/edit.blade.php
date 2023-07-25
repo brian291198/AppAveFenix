@@ -14,7 +14,7 @@
 {{-- CONTENIDO --}}
 
 <div class="title-ar">
-    <h1>Editar Registro de Personal</h1>
+    <h1>Editar Registro de Personal - {{ $personal->idpersonal }}</h1>
 </div>
  <div class="title-center">
  
