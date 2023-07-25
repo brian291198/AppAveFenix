@@ -17,6 +17,10 @@ use App\Http\Controllers\TallerController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RecursoController;
 use App\Http\Controllers\PrioridadController;
+use App\Http\Controllers\BusController;
+
+/* CONTROLADORES DE RECURSOS HUMANOS */
+use App\Http\Controllers\PersonalController;
 
 
 /*
@@ -86,6 +90,14 @@ Route::get('/ejemplo', function () {
         })->name('cancelarpri');
         Route::get('prioridad/{id}/eliminar',[PrioridadController::class,'destroy'])->name('Prioridad.destroy');
 
+        //RUTAS PARA BUS
+        Route::resource('Bus', BusController::class);
+
+        Route::get('Cancelarb', function () {
+            return redirect()->route('Bus.index')->with('datos','Acción Cancelada ..!');
+        })->name('cancelarb');
+        Route::get('bus/{id}/eliminar',[BusController::class,'destroy'])->name('Bus.destroy');
+
 /* FIN RUTAS MANTENIMIENTO */
 
 
@@ -106,6 +118,15 @@ Route::get('graficos', [GraficoController::class, 'index'])->name('graficos.inde
 
 
 /* INICIO RUTAS RECURSOS HUMANOS */
+//RUTAS PARA PERSONAL
+        Route::resource('Personal', PersonalController::class);
+
+        Route::get('Cancelarp', function () {
+            return redirect()->route('Personal.index')->with('datos','Acción Cancelada ..!');
+        })->name('cancelarp');
+        Route::get('personal/{id}/eliminar',[PersonalController::class,'destroy'])->name('Personal.destroy');
+
+
 
 /* FIN RUTAS RECURSOS HUMANOS */
 
