@@ -21,6 +21,18 @@ use App\Http\Controllers\BusController;
 
 /* CONTROLADORES DE RECURSOS HUMANOS */
 use App\Http\Controllers\PersonalController;
+
+/* CONTROLADORES DE ENCOMIENDAS */
+use App\Http\Controllers\AgenciaController;
+use App\Http\Controllers\TarifaController;
+use App\Http\Controllers\ComprobanteController;
+use App\Http\Controllers\TransporteController;
+use App\Http\Controllers\EnvioController;
+use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\PaqueteController;
+use App\Http\Controllers\RutaController;
+use App\Http\Controllers\ReclamoController;
+
 use App\Http\Controllers\PostulanteController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\PermisosController;
@@ -208,7 +220,15 @@ Route::get('graficos', [GraficoController::class, 'index'])->name('graficos.inde
 
 
 /* INICIO RUTAS ENCOMIENDA */
-
+Route::resource('agencias', AgenciaController::class)->names('agencias');
+Route::resource('comprobantes', ComprobanteController::class)->names('comprobantes');
+Route::resource('envios', EnvioController::class)->names('envios');
+Route::resource('paquetes', PaqueteController::class)->names('paquetes');
+Route::resource('promociones', PromocionController::class)->names('promociones');
+Route::resource('reclamos', ReclamoController::class)->names('reclamos');
+Route::resource('rutas', RutaController::class)->names('rutas');
+Route::resource('tarifas', TarifaController::class)->names('tarifas');
+Route::resource('transportes', TransporteController::class)->names('transportes');
 /* FIN RUTAS ENCOMIENDA */
 
 
