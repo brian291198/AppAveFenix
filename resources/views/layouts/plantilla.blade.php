@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
   <title>@yield('title', 'Ave Fenix')</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -12,7 +13,7 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -253,36 +254,159 @@
 
           
         {{-- INICIO SUBSISTEMA RECURSOS HUMANOS --}}
-
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z"/>
+            </svg>
             <p>
               Recursos Humanos
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{route('Personal.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Personal</p>
-              </a>
+          <!-- Empleados   ------------------------------------------------------------------------------------->
+              <li>
+                <li class="nav-item">
+
+                  <a href="" class="nav-link">
+                    <p>
+                      Empleados
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+
+                  <ul class="nav nav-treeview">
+                  
+                    <li class="nav-item">
+                      <a href="{{route('Personal.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Lista</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{route('Personal.create')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Agregar</p>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li>
+              </li>
+            
+            <!-- Fin Empleados   ------------------------------------------------------------------------------------->
+            <!--Reclutamiento   ------------------------------------------------------------------------------------->
+              <li>
+                <li class="nav-item">
+
+                  <a href="#" class="nav-link">
+                    <p>                 
+                      Reclutamiento
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+
+                  <ul class="nav nav-treeview">
+                  
+                    <li class="nav-item">
+                      <a href="{{route('Postulante.index')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Lista</p>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{{route('Postulante.create')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Agregar</p>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li>
+              </li>
+            <!-- Fin Reclutamiento   ------------------------------------------------------------------------------------->
+            <!--Control   ------------------------------------------------------------------------------------->
+            <li>
+              <li class="nav-item">
+
+                <a href="#" class="nav-link">
+                  <p>                 
+                    Control
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+                
+                  <li class="nav-item">
+                    <a href="{{route('permiso.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Permisos</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{route('vacaciones.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Vacaciones</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{route('contrato.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Contrato</p>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Otro</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Otro</p>
-              </a>
-            </li>
+            <!--Fin Control   ------------------------------------------------------------------------------------->
+            <!--configuración   ------------------------------------------------------------------------------------->
+            <li>
+              <li class="nav-item">
+
+                <a href="#" class="nav-link">
+                  <p>                 
+                    Configuración
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                {{--   {{route('sueldo.index')}} --}}
+                <ul class="nav nav-treeview">
+                
+                  <li class="nav-item">
+                    <a href="{{route('area.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Areas</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{route('cargo.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Cargos</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{route('sucursal.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sucursales</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </li>  
           </ul>
         </li>
+
+
+
 
         {{-- FIN SUBSISTEMA RECURSOS HUMANOS --}}
 

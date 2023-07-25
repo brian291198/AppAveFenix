@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Personal;
+use App\Models\Postulante;
 
 class PersonalController extends Controller
 {
@@ -15,9 +16,9 @@ class PersonalController extends Controller
     {
         //
         $buscarpor=$request->get('buscarpor');
-         $personal=Personal::where('control','=','1')->where('nombre','like',$buscarpor.'%')->paginate($this::PAGINATION); ; 
+        $personal=Personal::where('control','=','1')->where('nombre','like',$buscarpor.'%')->paginate($this::PAGINATION);  
         
-         return view('Personal.index',compact('personal','buscarpor')); 
+        return view('Personal.index',compact('personal','buscarpor')); 
     }
 
     /**
@@ -39,7 +40,7 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $data=request()->validate([ 
 
 
@@ -118,6 +119,17 @@ class PersonalController extends Controller
     
         return view('Personal.edit',compact('personal'));
     }
+    public function  pos($id)
+    {
+            //
+            $postulante=Postulante::findOrFail($id);
+            $postulante->control='0';
+            $postulante->save();
+    
+        
+            return view('Personal.pos',compact('postulante'));
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -190,4 +202,5 @@ class PersonalController extends Controller
         $personal->save();
         return redirect()->route('Personal.index')->with('datos','Registro Eliminado...!');
     }
+    
 }

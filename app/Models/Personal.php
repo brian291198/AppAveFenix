@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\PersonalPermiso;
+use App\Models\PersonalVacaciones;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +19,20 @@ class Personal extends Model
     
     public function bus() 
     {
-          return $this->HasMany(Bus::class,'idbus','idbus');
+        return $this->HasMany(Bus::class,'idbus','idbus');
     }
 
+    public function permisos()
+    {
+        return $this->hasMany(PersonalPermiso::class, 'id_personal');
+    }
+    
+    public function vacaciones()
+    {
+        return $this->hasMany(PersonalVacaciones::class, 'id_personal');
+    }
+    public function contratos()
+    {
+        return $this->hasMany(Contrato::class, 'id_personal');
+    }
 }
