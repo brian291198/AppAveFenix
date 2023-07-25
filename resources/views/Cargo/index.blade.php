@@ -37,7 +37,6 @@
                 <td scope="row">{{$c->id_cargo}}</td>
                 <td>{{$c -> cargo }}</td>
                 <td>{{$c -> descripcion }}</td>
-        
                 <td>{{$c ->area }}</td>  
 
                
