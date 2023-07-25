@@ -17,7 +17,14 @@ use App\Http\Controllers\BusController;
 
 /* CONTROLADORES DE RECURSOS HUMANOS */
 use App\Http\Controllers\PersonalController;
-
+use App\Http\Controllers\PostulanteController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\PermisosController;
+use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\VacacionesController;
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\ContratoController;
+use App\Models\Cargo;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,9 +126,77 @@ Route::resource('ventas', VentaController::class)->names('ventas');
             return redirect()->route('Personal.index')->with('datos','Acción Cancelada ..!');
         })->name('cancelarp');
         Route::get('personal/{id}/eliminar',[PersonalController::class,'destroy'])->name('Personal.destroy');
+        Route::get('personal/pos/{id}', [PersonalController::class, 'pos'])->name('Personal.pos');
+
+
+        Route::resource('Postulante', PostulanteController::class);
+
+        Route::get('Cancelarpos', function () {
+            return redirect()->route('Postulante.index')->with('datos','Acción Cancelada ..!');
+        })->name('cancelarpos');
+        Route::get('postulante/{id}/eliminar',[PostulanteController::class,'destroy'])->name('Postulante.destroy');
 
 
 
+    
+
+        Route::get('Cancelarper', function () {
+            return redirect()->route('permiso.index')->with('datos','Acción Cancelada ..!');
+        })->name('cancelarper');
+
+        Route::get('/permiso', [PermisosController::class, 'index'])->name('permiso.index');
+        Route::get('/permiso/create', [PermisosController::class, 'create'])->name('permiso.create');
+        Route::get('/permiso/edit/{id}', [PermisosController::class, 'edit'])->name('permiso.edit');
+        Route::get('/permiso/destroy/{id}', [PermisosController::class, 'destroy'])->name('permiso.destroy');
+        Route::put('/permisos/{id}', [PermisosController::class, 'update'])->name('permiso.update');
+        Route::post('/permisos', [PermisosController::class, 'store'])->name('permiso.store');
+        Route::post('/permisos/aceptar/{id}', [PermisosController::class, 'aceptar'])->name('permiso.aceptar');
+        Route::post('/permisos/rechazar/{id}', [PermisosController::class, 'rechazar'])->name('permiso.rechazar');
+
+        
+        Route::get('Cancelarvac', function () {
+            return redirect()->route('vacaciones.index')->with('datos','Acción Cancelada ..!');
+        })->name('cancelarvac');
+
+        Route::get('Cancelarcon', function () {
+            return redirect()->route('contrato.index')->with('datos','Acción Cancelada ..!');
+        })->name('cancelarcon');
+    
+        Route::get('/vacaciones', [VacacionesController::class, 'index'])->name('vacaciones.index');
+        Route::get('/vacaciones/create', [VacacionesController::class, 'create'])->name('vacaciones.create');
+        Route::get('/vacaciones/edit/{id}', [VacacionesController::class, 'edit'])->name('vacaciones.edit');
+        Route::get('/vacaciones/destroy/{id}', [VacacionesController::class, 'destroy'])->name('vacaciones.destroy');
+        Route::put('/vacaciones/{id}', [VacacionesController::class, 'update'])->name('vacaciones.update');
+        Route::post('/vacaciones', [VacacionesController::class, 'store'])->name('vacaciones.store');
+
+
+        Route::get('/sucursal', [SucursalController::class, 'index'])->name('sucursal.index');
+        Route::get('/sucursal/registro', [SucursalController::class, 'create'])->name('sucursal.create');
+        Route::get('/sucursal/edit/{id}', [SucursalController::class, 'edit'])->name('sucursal.edit');
+        route::post('/sucursal/store', [SucursalController::class, 'store'] )->name('sucursal.store');
+        route::put('/sucursal/update/{id}', [SucursalController::class, 'update'] )->name('sucursal.update');
+        route::get('/sucursal/destroy/{id}', [SucursalController::class, 'destroy'] )->name('sucursal.destroy');
+
+        Route::get('/area', [AreaController::class, 'index'])->name('area.index');
+        Route::get('/area/registro', [AreaController::class, 'create'])->name('area.create');
+        Route::get('/area/edit/{id}', [AreaController::class, 'edit'])->name('area.edit');
+        route::post('/area/store', [AreaController::class, 'store'] )->name('area.store');
+        route::put('/area/update/{id}', [AreaController::class, 'update'] )->name('area.update');
+        route::get('/area/destroy/{id}', [AreaController::class, 'destroy'] )->name('area.destroy');
+
+        Route::get('/cargo', [CargoController::class, 'index'])->name('cargo.index');
+        Route::get('/cargo/registro', [CargoController::class, 'create'])->name('cargo.create');
+        Route::get('/cargo/edit/{id}', [CargoController::class, 'edit'])->name('cargo.edit');
+        route::post('/cargo/store', [CargoController::class, 'store'] )->name('cargo.store');
+        route::put('/cargo/update/{id}', [CargoController::class, 'update'] )->name('cargo.update');
+        route::get('/cargo/destroy/{id}', [CargoController::class, 'destroy'] )->name('cargo.destroy');
+
+        Route::get('/contrato', [ContratoController::class, 'index'])->name('contrato.index');
+        Route::get('/contrato/registro', [ContratoController::class, 'create'])->name('contrato.create');
+        Route::get('/contrato/edit/{id}', [ContratoController::class, 'edit'])->name('contrato.edit');
+        route::post('/contrato/store', [ContratoController::class, 'store'] )->name('contrato.store');
+        route::put('/contrato/update/{id}', [ContratoController::class, 'update'] )->name('contrato.update');
+        route::get('/contrato/destroy/{id}', [ContratoController::class, 'destroy'] )->name('contrato.destroy');
 /* FIN RUTAS RECURSOS HUMANOS */
 
 
