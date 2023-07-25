@@ -55,14 +55,15 @@ class VacacionesController extends Controller
     public function edit($id)
     {
         $vacaciones = Vacaciones::where('id_vacaciones',$id)->first();
+        $det = PersonalVacaciones::where('id_vacaciones',$id)->first();
+        $per = Personal::where('id_personal',$det->id_personal)->first();
 
-    // Obtener los datos del empleado asociado al permiso
-    $nombre = $vacaciones->personal->nombre;
-    $apellidos = $vacaciones->personal->apellidos;
-    $dni = $vacaciones->personal->dni;
-    $fecha_ini=$vacaciones->fecha_ini;
-    $fecha_fin=$vacaciones->fecha_fin;
-    $tipo_vac = $vacaciones->tipo_vac;
+        $nombre = $per->nombre;
+        $apellidos = $per->apellidos;
+        $dni = $per->dni;
+        $fecha_ini=$vacaciones->fecha_ini;
+        $fecha_fin=$vacaciones->fecha_fin;
+        $tipo_vac = $vacaciones->tipo_vac;
 
         return view('vacaciones.edit', compact('vacaciones', 'nombre', 'apellidos', 'dni', 'tipo_vac','fecha_ini','fecha_fin'));
     }

@@ -11,8 +11,12 @@ class CargoController extends Controller
 {
     public function index()
     {
-        $cargos = Cargo::where('control', 1)->get();
+        $cargos = Cargo::with(['area'])
+        ->join('area', 'area.id_area', '=', 'cargo.id_area')
+        ->where('area.control', 1)
+        ->get();
         return view('Cargo.index', compact('cargos'));
+   
     }
     public function create()
     {

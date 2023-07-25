@@ -16,7 +16,7 @@ class Cargo extends Model
             'id_area',
             'control',
         ];
-        public function arease()
+        public function area()
         {
             return $this->belongsTo(Area::class, 'id_area');
         }

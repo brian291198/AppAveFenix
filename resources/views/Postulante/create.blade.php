@@ -20,82 +20,73 @@
 
  <div class="title-center">
  
- <form method="POST" action="{{ route('Postulante.store')}} " enctype="multipart/form-data">
+ <form method="POST" action="{{ route('Postulante.store')}} " enctype="multipart/form-data" class="row g-3">
  @csrf
 
        
 
      
 
-        <div class="form-group" >
-            <label for="">DNI: </label>
+        <div class="col-md-2" >
+            <label for=""  style="color: steelblue;">DNI: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" name="dni" id="dni">
+            <input   class="form-control" style="padding-bottom:10px;width:200px;border-color:dimgray;" type="text" name="dni" id="dni">
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Nombre: </label>
+        <div class="col-md-5" >
+            <label for=""  style="color: steelblue;">Nombre: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" name="nombre" id="nombre">
+            <input  class="form-control"  style="padding-bottom:10px;width:200px;border-color:dimgray;" type="text" name="nombre" id="nombre">
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Apellidos: </label>
+        <div class="col-md-5" >
+            <label for=""  style="color: steelblue;">Apellidos: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" name="apellidos" id="apellidos">
+            <input   class="form-control" style="padding-bottom:10px;width:200px;border-color:dimgray;" type="text" name="apellidos" id="apellidos">
             </div>
         </div>
 
 
        
-        <div class="form-group" >
-            <label for="">Edad: </label>
+        <div class="col-md-2" >
+            <label for=""  style="color: steelblue;">Edad: </label>
             <div class="input-group" >
-            <input  style="padding:5px 0px;width:200px" type="number" class="formcontrol" name="edad" id="edad">
+            <input  style="padding:5px 0px;width:200px;border-color:dimgray;" type="number" class="form-control" name="edad" id="edad">
             </div>
         </div>
 
 
-
-        {{-- <div class="form-group" >
-            <label for="">Estado Civil: </label>
+        <div class="col-md-10" >
+            <label for=""  style="color: steelblue;">Dirección: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" name="estado_civil" id="estado_civil" >
-            </div>
-        </div> --}}
-
-
-
-        <div class="form-group" >
-            <label for="">Dirección: </label>
-            <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" name="direccion" id="direccion">
+            <input   class="form-control" style="padding-bottom:10px;width:200px;border-color:dimgray;" type="text" name="direccion" id="direccion">
             </div>
         </div>
 
 
-        <div class="form-group" >
-            <label for="">Teléfono: </label>
+        <div class="col-md-5" >
+            <label for=""  style="color: steelblue;">Teléfono: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="text" name="telefono" id="telefono">
+            <input  class="form-control" style="padding-bottom:10px;width:200px;border-color:dimgray;" type="text" name="telefono" id="telefono">
             </div>
         </div>
 
-        <div class="form-group" >
-            <label for="">Email: </label>
+        <div class="col-md-5" >
+            <label for=""  style="color: steelblue;">Email: </label>
             <div class="input-group" >
-            <input  style="padding-bottom:10px;width:200px" type="email" name="email" id="email">
+            <input  class="form-control" style="padding-bottom:10px;width:200px;border-color:dimgray;" type="email" name="email" id="email">
             </div>
         </div>
 
+        <div class="col-md-3" >
+            <button style="margin-left: 60px;margin-top: 20px"  type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
+        </div>
 
-
- 
-      
-<button style="margin-left: 60px;margin-top: 20px"  type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
-<a style="margin-top: 20px"  href="{{ route('cancelarpos')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
+        <div class="col-md-3" >
+            <a style="margin-top: 20px"  href="{{ route('cancelarpos')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
+        </div>
 </form>
 </div>
 </div>

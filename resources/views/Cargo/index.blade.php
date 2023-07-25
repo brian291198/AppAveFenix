@@ -34,10 +34,13 @@
         <tbody>
             @foreach($cargos as $c)
             <tr class="">
-                <td scope="row">{{$c -> id_cargo}}</td>
+                <td scope="row">{{$c->id_cargo}}</td>
                 <td>{{$c -> cargo }}</td>
                 <td>{{$c -> descripcion }}</td>
-                <td>{{$c -> area->area }}</td>
+        
+                <td>{{$c ->area }}</td>  
+
+               
                 <td>
                     <a href="{{route('cargo.edit', $c->id_cargo)}}" style="color:navy">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

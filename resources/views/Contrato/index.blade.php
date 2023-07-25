@@ -64,7 +64,7 @@
                 <td>{{ $con->nombre }}</td>
                 <td>{{ $con->apellidos }}</td>
                 <td>{{ $con->cargo }}</td>
-                <td>{{ $con->descripcion }}</td>
+                <td>{{ $con->area }}</td>
                 <td>{{ $con->sucursal }}</td>
                 <td>{{ $con->fecha_ini }}</td>
                 <td>{{ $con->fecha_fin }}</td>

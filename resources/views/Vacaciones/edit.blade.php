@@ -18,41 +18,49 @@
 </div>
  <div class="title-center">
  
- <form method="POST" action="{{ route("vacaciones.update",$vacaciones->id_vacaciones)}}">
+ <form method="POST" action="{{ route("vacaciones.update",$vacaciones->id_vacaciones)}}" class="row g-3">
 @method('put') 
  @csrf
 
- <div class="form-group" >
-    <label for="">DNI: </label>
-    <div class="input-group" >
-    <input  style="padding-bottom:10px;width:200px" type="text" class="formcontrol" name="dni" id="dni" value="{{ $dni }}" readonly>
-    </div>
 
-<div class="form-group" >
-    <label for="">Fecha de Inicio: </label>
+ <div class="col-md-4" >
+    <label for="" style="color: steelblue;">DNI: </label>
     <div class="input-group" >
-    <input  style="padding-bottom:10px;width:200px" type="date" class="formcontrol" name="fecha_ini" id="fecha_ini" value="{{ $vacaciones->fecha_ini }}">
-    </div>
-</div>
-<div class="form-group" >
-    <label for="">Fecha de Fin: </label>
-    <div class="input-group" >
-    <input  style="padding-bottom:10px;width:200px" type="date" class="formcontrol" name="fecha_fin" id="fecha_fin" value="{{ $vacaciones->fecha_fin }}">
+    <input  style="padding-bottom:10px;width:200px;border-color:dimgray;" type="text" class="form-control" name="dni" id="dni" value="{{ $dni }}" readonly>
     </div>
 </div>
 
-<div class="form-group" >
-    <label for="">Tipo: </label>
+<div class="col-md-4" >
+    <label for="" style="color: steelblue;">Fecha de Inicio: </label>
     <div class="input-group" >
-    <input  style="padding-bottom:10px;width:200px" type="text" name="tipo_vac" id="tipo_vac" value="{{ $vacaciones->tipo_vac }}">
+    <input  style="padding-bottom:10px;width:200px;border-color:dimgray;" type="date" class="form-control" name="fecha_ini" id="fecha_ini" value="{{ $vacaciones->fecha_ini }}">
     </div>
 </div>
+<div class="col-md-4" >
+    <label for="" style="color: steelblue;">Fecha de Fin: </label>
+    <div class="input-group" >
+    <input  style="padding-bottom:10px;width:200px;border-color:dimgray;" type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="{{ $vacaciones->fecha_fin }}">
+    </div>
+</div>
+
+<div class="col-md-12" >
+    <label for="" style="color: steelblue;">Tipo: </label>
+    <div class="input-group" >
+    <input class="form-control"  style="padding-bottom:10px;width:200px" type="text" name="tipo_vac" id="tipo_vac" value="{{ $vacaciones->tipo_vac }}">
+    </div>
+</div>
+<div class="col-md-3" >
+    <button style="margin-left: 60px;margin-top: 20px"  type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
+</div>
+
+<div class="col-md-3" >
+    <a style="margin-top: 20px"  href="{{ route('cancelarvac')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
+</div>
+
 
 <!-- {{-- <button style="margin-left: 300px;margin-top:40px;margin-right:10px"type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
 <a style="margin-top:40px" href="{{ route('cancelare')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
  --}} -->
-<button style="margin-left: 60px;margin-top: 20px"  type="submit" class="btn btn-primary"><i class="fas fasave"></i> Grabar</button>
-<a style="margin-top: 20px"  href="{{ route('cancelarvac')}}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</button></a>
 </form>
 </div>
 

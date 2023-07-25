@@ -155,7 +155,7 @@ Route::resource('ventas', VentaController::class)->names('ventas');
 
         
         Route::get('Cancelarvac', function () {
-            return redirect()->route('Vacaciones.index')->with('datos','Acción Cancelada ..!');
+            return redirect()->route('vacaciones.index')->with('datos','Acción Cancelada ..!');
         })->name('cancelarvac');
 
         Route::get('Cancelarcon', function () {
